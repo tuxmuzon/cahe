@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'rr_cash.ui'
 **
-** Created by: Qt User Interface Compiler version 5.7.1
+** Created by: Qt User Interface Compiler version 5.8.0
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
 ********************************************************************************/
@@ -49,7 +49,6 @@ public:
     QPushButton *two2;
     QLabel *label_VidCheka;
     QPushButton *six;
-    QPushButton *up;
     QTableWidget *table_tovar;
     QLabel *label_KolVo;
     QPushButton *zero;
@@ -77,6 +76,7 @@ public:
     QPushButton *Down;
     QPushButton *product;
     QPushButton *enter;
+    QPushButton *up;
     QMenuBar *menuBar;
     QMenu *menuRR_Cash_mini;
     QMenu *menu;
@@ -136,7 +136,7 @@ public:
         gridLayout_4->setObjectName(QStringLiteral("gridLayout_4"));
         two2 = new QPushButton(centralWidget);
         two2->setObjectName(QStringLiteral("two2"));
-        QSizePolicy sizePolicy1(QSizePolicy::Minimum, QSizePolicy::Minimum);
+        QSizePolicy sizePolicy1(QSizePolicy::Minimum, QSizePolicy::Expanding);
         sizePolicy1.setHorizontalStretch(0);
         sizePolicy1.setVerticalStretch(0);
         sizePolicy1.setHeightForWidth(two2->sizePolicy().hasHeightForWidth());
@@ -167,15 +167,6 @@ public:
 
         gridLayout_4->addWidget(six, 5, 8, 1, 1);
 
-        up = new QPushButton(centralWidget);
-        up->setObjectName(QStringLiteral("up"));
-        sizePolicy1.setHeightForWidth(up->sizePolicy().hasHeightForWidth());
-        up->setSizePolicy(sizePolicy1);
-        up->setFocusPolicy(Qt::NoFocus);
-        up->setStyleSheet(QStringLiteral("font: 24pt \"MS Shell Dlg 2\";"));
-
-        gridLayout_4->addWidget(up, 4, 9, 1, 1);
-
         table_tovar = new QTableWidget(centralWidget);
         if (table_tovar->columnCount() < 10)
             table_tovar->setColumnCount(10);
@@ -200,8 +191,11 @@ public:
         QTableWidgetItem *__qtablewidgetitem5 = new QTableWidgetItem();
         table_tovar->setHorizontalHeaderItem(5, __qtablewidgetitem5);
         table_tovar->setObjectName(QStringLiteral("table_tovar"));
-        sizePolicy.setHeightForWidth(table_tovar->sizePolicy().hasHeightForWidth());
-        table_tovar->setSizePolicy(sizePolicy);
+        QSizePolicy sizePolicy2(QSizePolicy::Expanding, QSizePolicy::Expanding);
+        sizePolicy2.setHorizontalStretch(0);
+        sizePolicy2.setVerticalStretch(0);
+        sizePolicy2.setHeightForWidth(table_tovar->sizePolicy().hasHeightForWidth());
+        table_tovar->setSizePolicy(sizePolicy2);
         QFont font2;
         font2.setFamily(QStringLiteral("MS Shell Dlg 2"));
         font2.setPointSize(14);
@@ -448,6 +442,15 @@ public:
 
         gridLayout_4->addWidget(enter, 6, 9, 3, 1);
 
+        up = new QPushButton(centralWidget);
+        up->setObjectName(QStringLiteral("up"));
+        sizePolicy1.setHeightForWidth(up->sizePolicy().hasHeightForWidth());
+        up->setSizePolicy(sizePolicy1);
+        up->setFocusPolicy(Qt::NoFocus);
+        up->setStyleSheet(QStringLiteral("font: 24pt \"MS Shell Dlg 2\";"));
+
+        gridLayout_4->addWidget(up, 4, 9, 1, 1);
+
         RR_Cash->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(RR_Cash);
         menuBar->setObjectName(QStringLiteral("menuBar"));
@@ -511,7 +514,6 @@ public:
         two2->setText(QApplication::translate("RR_Cash", "2", Q_NULLPTR));
         label_VidCheka->setText(QApplication::translate("RR_Cash", "\320\222\320\270\320\264\320\247\320\265\320\272\320\260", Q_NULLPTR));
         six->setText(QApplication::translate("RR_Cash", "6", Q_NULLPTR));
-        up->setText(QApplication::translate("RR_Cash", "\320\222\320\225\320\240\320\245", Q_NULLPTR));
         QTableWidgetItem *___qtablewidgetitem = table_tovar->horizontalHeaderItem(0);
         ___qtablewidgetitem->setText(QApplication::translate("RR_Cash", "\320\235\320\260\320\270\320\274\320\265\320\275\320\276\320\262\320\260\320\275\320\270\320\265", Q_NULLPTR));
         QTableWidgetItem *___qtablewidgetitem1 = table_tovar->horizontalHeaderItem(1);
@@ -550,6 +552,7 @@ public:
         enter->setWhatsThis(QApplication::translate("RR_Cash", "\320\276\321\201\321\203\321\211\320\265\321\201\321\202\320\262\320\273\321\217\321\202\321\201\321\217 \320\277\320\276\320\264\321\202\320\262\320\265\321\200\320\266\320\264\320\265\320\275\320\270\320\265 \320\276\320\277\320\265\321\200\320\260\321\206\320\270\320\270", Q_NULLPTR));
 #endif // QT_NO_WHATSTHIS
         enter->setText(QApplication::translate("RR_Cash", "\320\222\320\262\320\276\320\264", Q_NULLPTR));
+        up->setText(QApplication::translate("RR_Cash", "\320\222\320\225\320\240\320\245", Q_NULLPTR));
         menuRR_Cash_mini->setTitle(QApplication::translate("RR_Cash", "\320\244\320\260\320\271\320\273", Q_NULLPTR));
         menu->setTitle(QApplication::translate("RR_Cash", "\320\232\320\260\321\201\321\201\320\260", Q_NULLPTR));
         menu_2->setTitle(QApplication::translate("RR_Cash", "\320\247\320\265\320\272", Q_NULLPTR));

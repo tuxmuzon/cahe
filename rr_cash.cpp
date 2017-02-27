@@ -35,9 +35,19 @@ RR_Cash::RR_Cash(QWidget *parent) :    QMainWindow(parent),    ui(new Ui::RR_Cas
     }  else{
         QMessageBox::warning(0,"Ошибка КАССЫ 2", result_code+"УСТРАНИТЕ ОШИБКУ И НАЖМИТЕ ЗАПРОСИТЬ СТАТУС");
     }
-    dbase.setDatabaseName("main.db");
+
+
+     QSettings *settings = new QSettings("settings.conf",QSettings::IniFormat);
+
+if (! QFile::exists(settings->value("database/path").toString())){
+    QMessageBox::warning(0,"Ошибка БД", "УСТРАНИТЕ ОШИБКУ ПУТЬ К БД НЕ НАЙДЕН");
+}
+
+
+    dbase.setDatabaseName(settings->value("database/path").toString());
     if (!dbase.open()) {
         qDebug() << dbase.lastError();
+         QMessageBox::warning(0,"Ошибка БД", dbase.lastError().text());
         qDebug() << "Db file not found";
     }
     QSqlQuery query("select logical_name, name from device where active=\"1\" and type=\"FR\" ");

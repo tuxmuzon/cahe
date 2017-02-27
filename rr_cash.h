@@ -16,6 +16,7 @@
 #include <QTableWidget>
 #include <QMessageBox>
 #include <QInputDialog>
+#include <QSqlError>
 //#include <QXmlStreamWriter>
 //#include <QXmlStreamReader>
 //#include <QXmlStreamAttribute>
