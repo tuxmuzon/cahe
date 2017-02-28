@@ -1,24 +1,18 @@
 #ifndef FISCAL_H
 #define FISCAL_H
-
-//#include <QObject>
 #include <QWidget>
-//#include <QtGui>
 #include <QAxWidget>
-//#include "QAxObject"
 #include <QSqlQuery>
 #include <QApplication>
+#include <QDebug>
+#include <QDate>
+//#include "rr_cash.h"
 
-
-class fiscal : public QObject
-{
+class fiscal : public QObject{
     Q_OBJECT
 public:
-
     explicit fiscal(QObject *parent = 0);
-
 signals:
-
 public slots:
     QString GetStatus(QString FrN);
     QString CancelDocument(QString FrN);
@@ -33,12 +27,7 @@ public slots:
     QString GetCurrentShift(QString FrN);
     QString GetCurrentDoc(QString FrN);
     QString GetSerialNumber(QString FrN);
-
 private:
-
     QAxWidget *drvFR = new QAxWidget();
-
-
 };
-
 #endif // FISCAL_H
