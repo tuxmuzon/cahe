@@ -24,7 +24,6 @@ QString fiscal::GetStatus(QString FrN) { //Получение состояния
             + ResultDescription.value<QString>() + " / ("
             + ECRMode.value<QString>() + ") "
             + ECRModeDescription.value<QString>();
-
     */
     if (ResultCode.value<QString>()=="0") {
         if (ECRMode.value<QString>()=="0"||ECRMode.value<QString>()=="2"||ECRMode.value<QString>()=="4") {

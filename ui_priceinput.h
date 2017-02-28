@@ -152,12 +152,15 @@ public:
 
         clear = new QPushButton(priceInput);
         clear->setObjectName(QStringLiteral("clear"));
+        clear->setFocusPolicy(Qt::NoFocus);
         clear->setStyleSheet(QStringLiteral("font: 26pt \"MS Shell Dlg 2\";"));
 
         gridLayout->addWidget(clear, 1, 3, 1, 1);
 
         erase = new QPushButton(priceInput);
         erase->setObjectName(QStringLiteral("erase"));
+        erase->setFocusPolicy(Qt::NoFocus);
+        erase->setContextMenuPolicy(Qt::NoContextMenu);
         erase->setStyleSheet(QStringLiteral("font: 26pt \"MS Shell Dlg 2\";"));
 
         gridLayout->addWidget(erase, 2, 3, 1, 1);
@@ -167,6 +170,7 @@ public:
         sizePolicy.setHeightForWidth(enter->sizePolicy().hasHeightForWidth());
         enter->setSizePolicy(sizePolicy);
         enter->setFocusPolicy(Qt::NoFocus);
+        enter->setContextMenuPolicy(Qt::NoContextMenu);
         enter->setStyleSheet(QStringLiteral("font: 26pt \"MS Shell Dlg 2\";"));
 
         gridLayout->addWidget(enter, 3, 3, 2, 1);
