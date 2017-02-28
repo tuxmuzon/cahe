@@ -517,13 +517,13 @@ public:
         QTableWidgetItem *___qtablewidgetitem = table_tovar->horizontalHeaderItem(0);
         ___qtablewidgetitem->setText(QApplication::translate("RR_Cash", "\320\235\320\260\320\270\320\274\320\265\320\275\320\276\320\262\320\260\320\275\320\270\320\265", Q_NULLPTR));
         QTableWidgetItem *___qtablewidgetitem1 = table_tovar->horizontalHeaderItem(1);
-        ___qtablewidgetitem1->setText(QApplication::translate("RR_Cash", "\320\232\320\276\320\273-\320\262\320\276", Q_NULLPTR));
+        ___qtablewidgetitem1->setText(QApplication::translate("RR_Cash", "   \320\232\320\276\320\273-\320\262\320\276    ", Q_NULLPTR));
         QTableWidgetItem *___qtablewidgetitem2 = table_tovar->horizontalHeaderItem(2);
         ___qtablewidgetitem2->setText(QApplication::translate("RR_Cash", "\320\225\320\264\320\270\320\275\320\270\321\206\320\260", Q_NULLPTR));
         QTableWidgetItem *___qtablewidgetitem3 = table_tovar->horizontalHeaderItem(3);
-        ___qtablewidgetitem3->setText(QApplication::translate("RR_Cash", "\320\246\320\265\320\275\320\260", Q_NULLPTR));
+        ___qtablewidgetitem3->setText(QApplication::translate("RR_Cash", "    \320\246\320\265\320\275\320\260    ", Q_NULLPTR));
         QTableWidgetItem *___qtablewidgetitem4 = table_tovar->horizontalHeaderItem(4);
-        ___qtablewidgetitem4->setText(QApplication::translate("RR_Cash", "\320\241\321\203\320\274\320\274\320\260", Q_NULLPTR));
+        ___qtablewidgetitem4->setText(QApplication::translate("RR_Cash", "    \320\241\321\203\320\274\320\274\320\260    ", Q_NULLPTR));
         label_KolVo->setText(QApplication::translate("RR_Cash", "KolVo", Q_NULLPTR));
         zero->setText(QApplication::translate("RR_Cash", "0", Q_NULLPTR));
         discont->setText(QApplication::translate("RR_Cash", "\320\241\320\272\320\270\320\264\320\272\320\260", Q_NULLPTR));

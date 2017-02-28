@@ -35,7 +35,12 @@ RR_Cash::RR_Cash(QWidget *parent) :    QMainWindow(parent),    ui(new Ui::RR_Cas
     }  else{
         QMessageBox::warning(0,"Ошибка КАССЫ 2", result_code+"УСТРАНИТЕ ОШИБКУ И НАЖМИТЕ ЗАПРОСИТЬ СТАТУС");
     }
-
+    if (! QFile::exists("settings.conf")){
+        QSettings *settingscr = new QSettings("settings.conf",QSettings::IniFormat);
+        settingscr->setValue("main/version","0.1.1");  //устанавливаем значение value=1
+           settingscr->setValue("database/path","main.db");
+           settingscr->sync();
+    }
 
      QSettings *settings = new QSettings("settings.conf",QSettings::IniFormat);
 
