@@ -558,15 +558,19 @@ void RR_Cash::on_action_3_triggered(){ //Продолжить печать
 }
 void RR_Cash::on_action_6_triggered() {// Меняем вид чека на "Возврат"
     UpdateVidCheka(2);
+    RR_Cash::saveLog("Изменили тип операции на возврат");
 }
 void RR_Cash::on_action_7_triggered() { // Меняем вид чека на "Продажа"
     UpdateVidCheka(1);
+    saveLog("Изменили тип операции на продажа");
 }
 void RR_Cash::on_action_5_triggered(){ // Меняем вид чека на "Внесение"
     UpdateVidCheka(3);
+    saveLog("Изменили тип операции на внесение");
 }
 void RR_Cash::on_action_8_triggered() { // Меняем вид чека на "Выплата"
     UpdateVidCheka(4);
+    saveLog("Изменили тип операции на выплата");
 }
 void RR_Cash::on_action_9_triggered(){  // Выводит таблицу с товарами
     qDebug() << "Entren goods table";
@@ -574,6 +578,7 @@ void RR_Cash::on_action_9_triggered(){  // Выводит таблицу с то
 }
 void RR_Cash::insert_chek(QString cahe_id, int oper_type, QString sum){
     QSqlQuery query;
+    saveLog("Проведена операция "+oper_type+' cache '+cahe_id+'На сумму'+sum);
     query.prepare("INSERT INTO chek ( goods_code, count, price, cost, shift, sale_number, excise, date_time, ope_type, cahe_id ) "
                   "VALUES ( :goods_code, :count, :price, :cost, :shift, :sale_number, :excise, :date_time, :ope_type, :cahe_id)");
     query.bindValue(":goods_code", 0);
@@ -594,6 +599,7 @@ void RR_Cash::insert_sale(QString cahe_id, int oper_type, QList<QStringList> goo
     QString CurentDateTime =SHM.GetDateTime(cahe_id);
     QStringList row;
     QSqlQuery query;
+    saveLog("Проведена операция продажи"+cahe_id+" "+CurentDateTime+" № смены "+CurentShift+"№ документа"+CurentDoc);
     for (int i=0;i<goods.length();i++){
         row=goods[i];
         QString price=row[4];
@@ -616,77 +622,95 @@ void RR_Cash::insert_sale(QString cahe_id, int oper_type, QList<QStringList> goo
 void RR_Cash::on_enter_clicked(){
     QKeyEvent event(QEvent::KeyPress, Qt::Key_Return, Qt::NoModifier);
     QApplication::sendEvent(this, &event);
+    saveLog("Нажата клавиша ВВод");
 }
 void RR_Cash::on_clear_clicked(){
     QKeyEvent event(QEvent::KeyPress, Qt::Key_Q, Qt::NoModifier);
     QApplication::sendEvent(this, &event);
+    saveLog("Нажата клавиша Очистка");
 }
 void RR_Cash::on_minus_clicked(){
     QKeyEvent event(QEvent::KeyPress, Qt::Key_Minus, Qt::NoModifier);
     QApplication::sendEvent(this, &event);
+    saveLog("Нажата клавиша Минус, операция сторно");
 }
 void RR_Cash::on_product_clicked(){
     QKeyEvent event(QEvent::KeyPress, 42, Qt::NoModifier);
     QApplication::sendEvent(this, &event);
+    saveLog("Нажата клавиша * измененено количество");
 }
 void RR_Cash::on_tab_clicked(){
     QKeyEvent event(QEvent::KeyPress, Qt::Key_Tab, Qt::NoModifier);
     QApplication::sendEvent(this, &event);
+    saveLog("Нажата клавиша Tab Ввод шк кнопкой");
 }
 void RR_Cash::on_zero_clicked(){
     QKeyEvent event(QEvent::KeyPress, Qt::Key_0, Qt::NoModifier);
     QApplication::sendEvent(this, &event);
+    saveLog("Нажата клавиша 0");
 }
 void RR_Cash::on_dote_clicked(){
     QKeyEvent event(QEvent::KeyPress, 44, Qt::NoModifier);
     QApplication::sendEvent(this, &event);
+    saveLog("Нажата клавиша .");
 }
 void RR_Cash::on_one_clicked(){
     QKeyEvent event(QEvent::KeyPress, Qt::Key_1, Qt::NoModifier);
     QApplication::sendEvent(this, &event);
+    saveLog("Нажата клавиша 1");
 }
 void RR_Cash::on_two2_clicked(){
     QKeyEvent event(QEvent::KeyPress, Qt::Key_2, Qt::NoModifier);
     QApplication::sendEvent(this, &event);
+    saveLog("Нажата клавиша 2");
 }
 void RR_Cash::on_three_clicked(){
     QKeyEvent event(QEvent::KeyPress, Qt::Key_3, Qt::NoModifier);
     QApplication::sendEvent(this, &event);
+    saveLog("Нажата клавиша 3");
 }
 void RR_Cash::on_four_clicked(){
     QKeyEvent event(QEvent::KeyPress, Qt::Key_4, Qt::NoModifier);
     QApplication::sendEvent(this, &event);
+    saveLog("Нажата клавиша 4");
 }
 void RR_Cash::on_five_clicked(){
     QKeyEvent event(QEvent::KeyPress, Qt::Key_5, Qt::NoModifier);
     QApplication::sendEvent(this, &event);
+    saveLog("Нажата клавиша 5");
 }
 void RR_Cash::on_six_clicked(){
     QKeyEvent event(QEvent::KeyPress, Qt::Key_6, Qt::NoModifier);
     QApplication::sendEvent(this, &event);
+    saveLog("Нажата клавиша 6");
 }
 void RR_Cash::on_seven_clicked(){
     QKeyEvent event(QEvent::KeyPress, Qt::Key_7, Qt::NoModifier);
     QApplication::sendEvent(this, &event);
+    saveLog("Нажата клавиша 7");
 }
 void RR_Cash::on_eight_clicked(){
     QKeyEvent event(QEvent::KeyPress, Qt::Key_8, Qt::NoModifier);
     QApplication::sendEvent(this, &event);
+    saveLog("Нажата клавиша 8");
 }
 void RR_Cash::on_nine_clicked(){
     QKeyEvent event(QEvent::KeyPress, Qt::Key_9, Qt::NoModifier);
     QApplication::sendEvent(this, &event);
+    saveLog("Нажата клавиша 9");
 }
 void RR_Cash::on_up_clicked(){
     QKeyEvent event(QEvent::KeyPress, Qt::Key_Up, Qt::NoModifier);
     QApplication::sendEvent(this, &event);
+    saveLog("Нажата клавиша Up");
 }
 void RR_Cash::on_Down_clicked(){
     QKeyEvent event(QEvent::KeyPress, Qt::Key_Down, Qt::NoModifier);
     QApplication::sendEvent(this, &event);
+    saveLog("Нажата клавиша Down");
 }
 void RR_Cash::on_pushButton_clicked(){
-    // log очистка ввода
+    saveLog("очистка ввода");
     ui->label_KolVo->clear();
     barcode.clear();
     count.clear();
@@ -696,17 +720,19 @@ void RR_Cash::on_discont_clicked(){
          ui->discont_2->setText(ui->label_KolVo->text());
         discont=ui->label_KolVo->text(); ui->label_KolVo->clear(); barcode.clear(); count.clear();
     QMessageBox::warning(0,"Установдена скидка ", "Поставили скидку "+discont+" процентов");
-    //log установлена скидка
+     saveLog(" установлена скидка"+discont);
      }
-    else { QMessageBox::warning(0,"Не верный диапазон скидки ", "Проверьте ввод"); }
+    else { QMessageBox::warning(0,"Не верный диапазон скидки ", "Проверьте ввод");
+        saveLog(" неверная скидка скидка"+discont);
+    }
 }
 void RR_Cash::on_service_clicked(){
     emit serviceDialog();
-    //log вызван сервсный диалог
+    saveLog(" вызван сервисный диалог");
 }
 void RR_Cash::on_additionaly_clicked(){
     emit additionalyDialog();
-    //log вызван дополнительный диалог
+    saveLog("вызван дополнительный диалог");
 }
 void RR_Cash::getaPrice(QString price){
     // log цена price введена в ручную
@@ -741,7 +767,7 @@ qDebug()    << query.value(0).toString();
                 qDebug() << sum_row.replace(".",",");
                 ui->table_tovar->setItem(ui->table_tovar->currentRow(),4,new QTableWidgetItem(sum_row));
                 find_repeat=true;
-                //log добавлен query.value(0).toString() товар повторяющийся код query.value(5).toString()   цена query.value(2).toString()
+                saveLog( "добавлен "+query.value(0).toString()+ "повторяйщийся товар  код "+query.value(5).toString()+" цена "+query.value(2).toString());
             }
         }
          //
@@ -764,23 +790,10 @@ qDebug()    << query.value(0).toString();
             ui->table_tovar->setItem(0,7,new QTableWidgetItem(query.value(6).toString()));
             ui->table_tovar->setItem(0,8,new QTableWidgetItem(query.value(7).toString()));
             ui->table_tovar->setItem(0,9,new QTableWidgetItem(query.value(5).toString()));
-            //barcode
-
-
-            //log добавлен query.value(0).toString() товар  код query.value(5).toString()   цена query.value(2).toString()
-            // qDebug() << ui->table_tovar->item(0,1)->text().toDouble();
-            qDebug() <<"STOIMOST" << query.value(2).toFloat();
-            qDebug() <<"SUMMA" << sum_row;
-            qDebug() <<"CODE" << query.value(7).toString();
-
+            saveLog( "добавлен "+query.value(0).toString()+ "товар  код "+query.value(5).toString()+" цена "+query.value(2).toString());
             ui->label_Itog->setText(sum_row.replace(".",","));
             ui->table_tovar->selectRow(0);
-            ui->label_KolVo->clear();
-            //ui->label_main->clear();
-
-          //  QSqlQuery egais_status("select ID, Capacity  from  tovar_egais where good_id="+query.value(5).toString());
-          //  egais_status.next();
-         //   qDebug() << "ID _GOODS_EGAIS  " << egais_status.value(0).toString();
+            ui->label_KolVo->clear();            
             if (query.value(4).toString()=="yes"){
                 //keyboardInputInterval - сие свойство позволяет отличить штрих код от вводжа с клавы
                 //                       QString lang = QApplication::inputMethod()->locale().name();
@@ -791,18 +804,16 @@ qDebug()    << query.value(0).toString();
                 if (ok) {
                     alcochek = true;
                     barcode.clear();
-                    ui->table_tovar->setItem(0,5,new QTableWidgetItem(text));
-                    //   ui->table_tovar->setItem(0,6,new QTableWidgetItem(query.value(6).toString()));
+                    ui->table_tovar->setItem(0,5,new QTableWidgetItem(text));                   
                     ui->table_tovar->setItem(0,6,new QTableWidgetItem(query.value(8).toString()));
                     qDebug() << ui->table_tovar->item(0,5)->text();
-                    //log добавлен акцизный товар с кодом query.value(5).toString()
+                    saveLog( "добавлен акцизный товар с кодом "+ query.value(5).toString() +" и маркой "+text);
                 } else { ui->table_tovar->removeRow(0);}
             }
         }
     }
     else {
         saveLog("код"+barcode+"не найден");
-    //log код query.value(5).toString() не найден
         QMessageBox::warning(0,"Предупреждение", "Код не найден");
     }
     barcode.clear();
@@ -813,6 +824,7 @@ void RR_Cash::on_price_clicked(){
     // пологике пересчет можно вынести в функцию отделюную
     QString sum_row;
      ui->table_tovar->setItem(ui->table_tovar->currentRow(),3,new QTableWidgetItem(ui->label_KolVo->text()));
+     saveLog("Установлена цена в ручную "+ ui->label_KolVo->text());
      sum_row.setNum(ui->table_tovar->item(ui->table_tovar->currentRow(),3)->text().replace(",",".").toDouble()*ui->table_tovar->item(ui->table_tovar->currentRow(),1)->text().toDouble());
      qDebug() << sum_row;
      ui->table_tovar->setItem(ui->table_tovar->currentRow(),4,new QTableWidgetItem(sum_row));
@@ -823,7 +835,6 @@ void RR_Cash::on_price_clicked(){
 }
 
 void RR_Cash::saveLog(const QString &datastr){
-
        if (! QFile::exists("log")){
            QDir().mkdir("log");
        }
