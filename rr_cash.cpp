@@ -1,6 +1,7 @@
 #include "rr_cash.h"
 #include "ui_rr_cash.h"
 
+
 egais newEgais;
 QStringList kkms;
 QString discont;
@@ -332,77 +333,7 @@ void RR_Cash::keyPressEvent(QKeyEvent *event) {
         }
     }
     if (event->key()==Qt::Key_Tab){
-        QSqlQuery query("SELECT name, units, price, alc, excise, code, barcode, group_print  FROM goods, barcode WHERE barcode.goods_id=goods.code and barcode.barcode="+barcode);
-        query.next();
-        //  QTextStream cout(stdout);
-        if(query.value(0).toString()!="") {
-            bool find_repeat, ok;
-            find_repeat=false;
-            for(int i =0; i< ui->table_tovar->rowCount(); i++){
-                qDebug() << "barcode in query" << query.value(7).toString();
-                if (ui->table_tovar->item(i,7)->text()==query.value(6).toString() && ui->table_tovar->item(i,5)->text()=="") {
-                    ui->table_tovar->setItem(i,1,new QTableWidgetItem(QString::number(ui->table_tovar->item(i,1)->text().toInt()+1)));
-                    QString sum_row;
-                    sum_row.setNum(ui->table_tovar->item(ui->table_tovar->currentRow(),3)->text().replace(",",".").toDouble()*ui->table_tovar->item(ui->table_tovar->currentRow(),1)->text().toDouble());                    
-                    qDebug() << sum_row.replace(".",",");
-                    ui->table_tovar->setItem(ui->table_tovar->currentRow(),4,new QTableWidgetItem(sum_row));
-                    find_repeat=true;
-                }
-            }
-            if (!find_repeat){
-                qDebug() << "return id" << query.value(0).toString() << QObject::tr("\n");
-                ui->table_tovar->insertRow(0);
-                ui->table_tovar->setItem(0,0,new QTableWidgetItem(query.value(0).toString()));
-                ui->table_tovar->setItem(0,1,new QTableWidgetItem("1"));
-                ui->table_tovar->setItem(0,2,new QTableWidgetItem(query.value(1).toString()));
-                if(query.value(2).toString()=="0"){
-                    emit moneaction();
-                    ui->table_tovar->setItem(0,3,new QTableWidgetItem("0"));                    
-                }
-                else {  ui->table_tovar->setItem(0,3,new QTableWidgetItem(QString::number(query.value(2).toDouble()).replace(".",","))); }
-                QString sum_row;
-                sum_row.setNum(ui->table_tovar->item(0,3)->text().replace(",",".").toDouble()*ui->table_tovar->item(0,1)->text().replace(",",".").toDouble());
-                ui->table_tovar->setItem(0,4,new QTableWidgetItem(sum_row.replace(".",",")));
-                ui->table_tovar->setItem(0,5,new QTableWidgetItem(""));
-                ui->table_tovar->setItem(0,6,new QTableWidgetItem(""));
-                ui->table_tovar->setItem(0,7,new QTableWidgetItem(query.value(6).toString()));
-                ui->table_tovar->setItem(0,8,new QTableWidgetItem(query.value(7).toString()));
-                ui->table_tovar->setItem(0,9,new QTableWidgetItem(query.value(5).toString()));
-                //barcode                
-                qDebug() <<"STOIMOST" << query.value(2).toFloat();
-                qDebug() <<"SUMMA" << sum_row;
-                qDebug() <<"CODE" << query.value(7).toString();
-                ui->label_Itog->setText(sum_row.replace(".",","));
-                ui->table_tovar->selectRow(0);
-                ui->label_KolVo->clear();
-                ui->table_tovar->resizeColumnsToContents();
-                QSqlQuery egais_status("select ID, Capacity  from  tovar_egais where good_id="+query.value(5).toString());
-                egais_status.next();
-                qDebug() << "ID _GOODS_EGAIS  " << egais_status.value(0).toString();
-                if (egais_status.value(0).toString()!=""){
-                    //keyboardInputInterval - сие свойство позволяет отличить штрих код от вводжа с клавы
-                    //                       QString lang = QApplication::inputMethod()->locale().name();
-                    //                      qDebug()<<lang;
-                    QString text = QInputDialog::getText(this, tr("Акцизный товар марка"),
-                                                         tr("Отсканируйте акцизную марку"), QLineEdit::Normal,"", &ok);
-                    if (ok) {
-                         barcode.clear();
-                        ui->table_tovar->setItem(0,5,new QTableWidgetItem(text));                        
-                        ui->table_tovar->setItem(0,6,new QTableWidgetItem(egais_status.value(1).toString()));
-                        qDebug() << ui->table_tovar->item(0,5)->text();
-                    } else { ui->table_tovar->removeRow(0);}
-                }
-            }
-        }
-        else {
-            qDebug() << QObject::tr("Не найдено");            
-            QMessageBox::warning(0,"Предупреждение", "Штрих-Код не найден");
-        }
-        //    qDebug() << query.size();
-        //   qDebug() << barcode;
-        barcode.clear();
-        count.clear();
-        RR_Cash::UpdateItog();
+        on_tab_2_clicked();
     }
     if (event->key()>=Qt::Key_0 && event->key()<=Qt::Key_9) { //Цифровые клавиши 0..9
         //qDebug() << "1" << ui->label_main->text();
@@ -603,13 +534,10 @@ void RR_Cash::on_action_triggered(){ // Отмена текущего чека
     }
 }
 void RR_Cash::on_action_3_triggered(){ //Продолжить печать
-
     //вынести в фискал
     QInputDialog *dialog = new QInputDialog();
     bool accepted;
-
     QString item = dialog->getItem(0, "Выберете Кассу", "Номер касс", kkms, 0, false, &accepted);
-
     QSqlQuery query("select logical_name from device where name=\""+item+"\"");
     query.next();
     //  QString test = query.lastError().text();
@@ -627,31 +555,23 @@ void RR_Cash::on_action_3_triggered(){ //Продолжить печать
         test->setProperty("Password", "30");
         test->dynamicCall("Disconnect()");
     }
-
 }
-
 void RR_Cash::on_action_6_triggered() {// Меняем вид чека на "Возврат"
     UpdateVidCheka(2);
 }
-
 void RR_Cash::on_action_7_triggered() { // Меняем вид чека на "Продажа"
     UpdateVidCheka(1);
 }
-
 void RR_Cash::on_action_5_triggered(){ // Меняем вид чека на "Внесение"
     UpdateVidCheka(3);
 }
-
 void RR_Cash::on_action_8_triggered() { // Меняем вид чека на "Выплата"
     UpdateVidCheka(4);
 }
-
 void RR_Cash::on_action_9_triggered(){  // Выводит таблицу с товарами
     qDebug() << "Entren goods table";
     emit good_edit();
 }
-
-
 void RR_Cash::insert_chek(QString cahe_id, int oper_type, QString sum){
     QSqlQuery query;
     query.prepare("INSERT INTO chek ( goods_code, count, price, cost, shift, sale_number, excise, date_time, ope_type, cahe_id ) "
@@ -668,7 +588,6 @@ void RR_Cash::insert_chek(QString cahe_id, int oper_type, QString sum){
     query.bindValue(":cahe_id", cahe_id);
     query.exec();
 }
-
 void RR_Cash::insert_sale(QString cahe_id, int oper_type, QList<QStringList> goods){
     QString CurentDoc =SHM.GetCurrentDoc(cahe_id);
     QString CurentShift =SHM.GetCurrentShift(cahe_id);
@@ -694,42 +613,34 @@ void RR_Cash::insert_sale(QString cahe_id, int oper_type, QList<QStringList> goo
         query.exec();
     }
 }
-
 void RR_Cash::on_enter_clicked(){
     QKeyEvent event(QEvent::KeyPress, Qt::Key_Return, Qt::NoModifier);
     QApplication::sendEvent(this, &event);
 }
-
 void RR_Cash::on_clear_clicked(){
     QKeyEvent event(QEvent::KeyPress, Qt::Key_Q, Qt::NoModifier);
     QApplication::sendEvent(this, &event);
 }
-
 void RR_Cash::on_minus_clicked(){
     QKeyEvent event(QEvent::KeyPress, Qt::Key_Minus, Qt::NoModifier);
     QApplication::sendEvent(this, &event);
 }
-
 void RR_Cash::on_product_clicked(){
     QKeyEvent event(QEvent::KeyPress, 42, Qt::NoModifier);
     QApplication::sendEvent(this, &event);
 }
-
 void RR_Cash::on_tab_clicked(){
     QKeyEvent event(QEvent::KeyPress, Qt::Key_Tab, Qt::NoModifier);
     QApplication::sendEvent(this, &event);
 }
-
 void RR_Cash::on_zero_clicked(){
     QKeyEvent event(QEvent::KeyPress, Qt::Key_0, Qt::NoModifier);
     QApplication::sendEvent(this, &event);
 }
-
 void RR_Cash::on_dote_clicked(){
     QKeyEvent event(QEvent::KeyPress, 44, Qt::NoModifier);
     QApplication::sendEvent(this, &event);
 }
-
 void RR_Cash::on_one_clicked(){
     QKeyEvent event(QEvent::KeyPress, Qt::Key_1, Qt::NoModifier);
     QApplication::sendEvent(this, &event);
@@ -808,7 +719,13 @@ void RR_Cash::getaPrice(QString price){
 void RR_Cash::on_tab_2_clicked(){
     // лог тоже поиск по коду, логика как со ШК, можно свернуть в процедуру
     barcode=ui->label_KolVo->text();
-    QSqlQuery query("SELECT name, units, price, alc, excise, code, barcode, group_print, volume  FROM goods, barcode WHERE barcode.goods_id=goods.code and user_code="+barcode);
+    QString queryString;
+    if (barcode.length()>5) {
+        queryString="SELECT name, units, price, alc, excise, code, barcode, group_print  FROM goods, barcode WHERE barcode.goods_id=goods.code and barcode.barcode="+barcode;
+    } else {
+    queryString="SELECT name, units, price, alc, excise, code, barcode, group_print, volume  FROM goods, barcode WHERE barcode.goods_id=goods.code and user_code="+barcode;
+        }
+    QSqlQuery query(queryString);
     query.next();
 qDebug()    << query.value(0).toString();
     if(query.value(0).toString()!="") {
@@ -884,6 +801,7 @@ qDebug()    << query.value(0).toString();
         }
     }
     else {
+        saveLog("код"+barcode+"не найден");
     //log код query.value(5).toString() не найден
         QMessageBox::warning(0,"Предупреждение", "Код не найден");
     }
@@ -902,4 +820,22 @@ void RR_Cash::on_price_clicked(){
      ui->label_KolVo->clear();
      barcode.clear();
      count.clear();
+}
+
+void RR_Cash::saveLog(const QString &datastr){
+
+       if (! QFile::exists("log")){
+           QDir().mkdir("log");
+       }
+        QFile *logfile = new QFile("log/"+QDate::currentDate().toString("dd.MM.yyyy")+".txt");
+        if (!logfile->open(QIODevice::Append | QIODevice::Text)) {
+            qDebug()<<"Fail "<<logfile->fileName()<<" not open";
+            return;
+        }
+        else
+            logfile->write(("\n"+QTime::currentTime().toString()).toLocal8Bit()+" ");
+    if (!logfile->isOpen())
+        return;
+    logfile->write(datastr.toLocal8Bit());
+    logfile->close();
 }
