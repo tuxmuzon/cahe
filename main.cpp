@@ -8,7 +8,7 @@ int main(int argc, char *argv[]){
     QApplication a(argc, argv);  
    RR_Cash w;
     w.showMaximized();
-    //соединяем панель Сервис
+    //соединяем панель Сервис  567567567
     ServiceDialog service;
     QObject::connect(&w,SIGNAL(serviceDialog()),&service,SLOT(close()));
     QObject::connect(&w,SIGNAL(serviceDialog()),&service,SLOT(show()));
