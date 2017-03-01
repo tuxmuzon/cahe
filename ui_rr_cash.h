@@ -51,7 +51,6 @@ public:
     QPushButton *nine;
     QLabel *label_VidCheka;
     QPushButton *two2;
-    QTableWidget *table_tovar;
     QLabel *label_KolVo;
     QPushButton *three;
     QPushButton *service;
@@ -77,6 +76,7 @@ public:
     QPushButton *tab_2;
     QPushButton *product;
     QPushButton *tab;
+    QTableWidget *table_tovar;
     QMenuBar *menuBar;
     QMenu *menuRR_Cash_mini;
     QMenu *menu;
@@ -185,52 +185,13 @@ public:
 
         gridLayout_4->addWidget(two2, 8, 8, 1, 1);
 
-        table_tovar = new QTableWidget(centralWidget);
-        if (table_tovar->columnCount() < 10)
-            table_tovar->setColumnCount(10);
-        QFont font1;
-        font1.setPointSize(13);
-        QTableWidgetItem *__qtablewidgetitem = new QTableWidgetItem();
-        __qtablewidgetitem->setTextAlignment(Qt::AlignCenter);
-        __qtablewidgetitem->setFont(font1);
-        table_tovar->setHorizontalHeaderItem(0, __qtablewidgetitem);
-        QTableWidgetItem *__qtablewidgetitem1 = new QTableWidgetItem();
-        __qtablewidgetitem1->setTextAlignment(Qt::AlignCenter);
-        table_tovar->setHorizontalHeaderItem(1, __qtablewidgetitem1);
-        QTableWidgetItem *__qtablewidgetitem2 = new QTableWidgetItem();
-        __qtablewidgetitem2->setTextAlignment(Qt::AlignCenter);
-        table_tovar->setHorizontalHeaderItem(2, __qtablewidgetitem2);
-        QTableWidgetItem *__qtablewidgetitem3 = new QTableWidgetItem();
-        __qtablewidgetitem3->setTextAlignment(Qt::AlignCenter);
-        table_tovar->setHorizontalHeaderItem(3, __qtablewidgetitem3);
-        QTableWidgetItem *__qtablewidgetitem4 = new QTableWidgetItem();
-        __qtablewidgetitem4->setTextAlignment(Qt::AlignCenter);
-        table_tovar->setHorizontalHeaderItem(4, __qtablewidgetitem4);
-        QTableWidgetItem *__qtablewidgetitem5 = new QTableWidgetItem();
-        table_tovar->setHorizontalHeaderItem(5, __qtablewidgetitem5);
-        table_tovar->setObjectName(QStringLiteral("table_tovar"));
-        QSizePolicy sizePolicy2(QSizePolicy::Expanding, QSizePolicy::Expanding);
-        sizePolicy2.setHorizontalStretch(0);
-        sizePolicy2.setVerticalStretch(0);
-        sizePolicy2.setHeightForWidth(table_tovar->sizePolicy().hasHeightForWidth());
-        table_tovar->setSizePolicy(sizePolicy2);
-        QFont font2;
-        font2.setFamily(QStringLiteral("MS Shell Dlg 2"));
-        font2.setPointSize(14);
-        table_tovar->setFont(font2);
-        table_tovar->setFocusPolicy(Qt::NoFocus);
-        table_tovar->setEditTriggers(QAbstractItemView::NoEditTriggers);
-        table_tovar->setColumnCount(10);
-
-        gridLayout_4->addWidget(table_tovar, 2, 0, 8, 5);
-
         label_KolVo = new QLabel(centralWidget);
         label_KolVo->setObjectName(QStringLiteral("label_KolVo"));
-        QFont font3;
-        font3.setPointSize(37);
-        font3.setBold(true);
-        font3.setWeight(75);
-        label_KolVo->setFont(font3);
+        QFont font1;
+        font1.setPointSize(37);
+        font1.setBold(true);
+        font1.setWeight(75);
+        label_KolVo->setFont(font1);
         label_KolVo->setLayoutDirection(Qt::LeftToRight);
         label_KolVo->setAlignment(Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter);
 
@@ -288,15 +249,15 @@ public:
 
         discont_2 = new QLabel(centralWidget);
         discont_2->setObjectName(QStringLiteral("discont_2"));
-        QFont font4;
-        font4.setPointSize(14);
-        discont_2->setFont(font4);
+        QFont font2;
+        font2.setPointSize(14);
+        discont_2->setFont(font2);
 
         gridLayout_4->addWidget(discont_2, 10, 1, 1, 1);
 
         label = new QLabel(centralWidget);
         label->setObjectName(QStringLiteral("label"));
-        label->setFont(font4);
+        label->setFont(font2);
 
         gridLayout_4->addWidget(label, 10, 0, 1, 1);
 
@@ -445,6 +406,45 @@ public:
 
         gridLayout_4->addWidget(tab, 3, 8, 1, 2);
 
+        table_tovar = new QTableWidget(centralWidget);
+        if (table_tovar->columnCount() < 10)
+            table_tovar->setColumnCount(10);
+        QFont font3;
+        font3.setPointSize(13);
+        QTableWidgetItem *__qtablewidgetitem = new QTableWidgetItem();
+        __qtablewidgetitem->setTextAlignment(Qt::AlignCenter);
+        __qtablewidgetitem->setFont(font3);
+        table_tovar->setHorizontalHeaderItem(0, __qtablewidgetitem);
+        QTableWidgetItem *__qtablewidgetitem1 = new QTableWidgetItem();
+        __qtablewidgetitem1->setTextAlignment(Qt::AlignCenter);
+        table_tovar->setHorizontalHeaderItem(1, __qtablewidgetitem1);
+        QTableWidgetItem *__qtablewidgetitem2 = new QTableWidgetItem();
+        __qtablewidgetitem2->setTextAlignment(Qt::AlignCenter);
+        table_tovar->setHorizontalHeaderItem(2, __qtablewidgetitem2);
+        QTableWidgetItem *__qtablewidgetitem3 = new QTableWidgetItem();
+        __qtablewidgetitem3->setTextAlignment(Qt::AlignCenter);
+        table_tovar->setHorizontalHeaderItem(3, __qtablewidgetitem3);
+        QTableWidgetItem *__qtablewidgetitem4 = new QTableWidgetItem();
+        __qtablewidgetitem4->setTextAlignment(Qt::AlignCenter);
+        table_tovar->setHorizontalHeaderItem(4, __qtablewidgetitem4);
+        QTableWidgetItem *__qtablewidgetitem5 = new QTableWidgetItem();
+        table_tovar->setHorizontalHeaderItem(5, __qtablewidgetitem5);
+        table_tovar->setObjectName(QStringLiteral("table_tovar"));
+        QSizePolicy sizePolicy2(QSizePolicy::Expanding, QSizePolicy::Expanding);
+        sizePolicy2.setHorizontalStretch(0);
+        sizePolicy2.setVerticalStretch(0);
+        sizePolicy2.setHeightForWidth(table_tovar->sizePolicy().hasHeightForWidth());
+        table_tovar->setSizePolicy(sizePolicy2);
+        QFont font4;
+        font4.setFamily(QStringLiteral("MS Shell Dlg 2"));
+        font4.setPointSize(14);
+        table_tovar->setFont(font4);
+        table_tovar->setFocusPolicy(Qt::NoFocus);
+        table_tovar->setEditTriggers(QAbstractItemView::NoEditTriggers);
+        table_tovar->setColumnCount(10);
+
+        gridLayout_4->addWidget(table_tovar, 2, 0, 8, 7);
+
         RR_Cash->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(RR_Cash);
         menuBar->setObjectName(QStringLiteral("menuBar"));
@@ -510,16 +510,6 @@ public:
         nine->setText(QApplication::translate("RR_Cash", "9", Q_NULLPTR));
         label_VidCheka->setText(QApplication::translate("RR_Cash", "\320\222\320\270\320\264\320\247\320\265\320\272\320\260", Q_NULLPTR));
         two2->setText(QApplication::translate("RR_Cash", "2", Q_NULLPTR));
-        QTableWidgetItem *___qtablewidgetitem = table_tovar->horizontalHeaderItem(0);
-        ___qtablewidgetitem->setText(QApplication::translate("RR_Cash", "\320\235\320\260\320\270\320\274\320\265\320\275\320\276\320\262\320\260\320\275\320\270\320\265", Q_NULLPTR));
-        QTableWidgetItem *___qtablewidgetitem1 = table_tovar->horizontalHeaderItem(1);
-        ___qtablewidgetitem1->setText(QApplication::translate("RR_Cash", "   \320\232\320\276\320\273-\320\262\320\276    ", Q_NULLPTR));
-        QTableWidgetItem *___qtablewidgetitem2 = table_tovar->horizontalHeaderItem(2);
-        ___qtablewidgetitem2->setText(QApplication::translate("RR_Cash", "\320\225\320\264\320\270\320\275\320\270\321\206\320\260", Q_NULLPTR));
-        QTableWidgetItem *___qtablewidgetitem3 = table_tovar->horizontalHeaderItem(3);
-        ___qtablewidgetitem3->setText(QApplication::translate("RR_Cash", "    \320\246\320\265\320\275\320\260    ", Q_NULLPTR));
-        QTableWidgetItem *___qtablewidgetitem4 = table_tovar->horizontalHeaderItem(4);
-        ___qtablewidgetitem4->setText(QApplication::translate("RR_Cash", "    \320\241\321\203\320\274\320\274\320\260    ", Q_NULLPTR));
         label_KolVo->setText(QApplication::translate("RR_Cash", "KolVo", Q_NULLPTR));
         three->setText(QApplication::translate("RR_Cash", "3", Q_NULLPTR));
         service->setText(QApplication::translate("RR_Cash", "\320\241\320\265\321\200\320\262\320\270\321\201", Q_NULLPTR));
@@ -547,6 +537,16 @@ public:
         tab_2->setText(QApplication::translate("RR_Cash", "\320\232\320\276\320\264", Q_NULLPTR));
         product->setText(QApplication::translate("RR_Cash", "\320\232\320\276\320\273-\320\262\320\276", Q_NULLPTR));
         tab->setText(QApplication::translate("RR_Cash", "\320\250\321\202\321\200\320\270\321\205-\320\232\320\276\320\264", Q_NULLPTR));
+        QTableWidgetItem *___qtablewidgetitem = table_tovar->horizontalHeaderItem(0);
+        ___qtablewidgetitem->setText(QApplication::translate("RR_Cash", "\320\235\320\260\320\270\320\274\320\265\320\275\320\276\320\262\320\260\320\275\320\270\320\265", Q_NULLPTR));
+        QTableWidgetItem *___qtablewidgetitem1 = table_tovar->horizontalHeaderItem(1);
+        ___qtablewidgetitem1->setText(QApplication::translate("RR_Cash", "   \320\232\320\276\320\273-\320\262\320\276    ", Q_NULLPTR));
+        QTableWidgetItem *___qtablewidgetitem2 = table_tovar->horizontalHeaderItem(2);
+        ___qtablewidgetitem2->setText(QApplication::translate("RR_Cash", "\320\225\320\264\320\270\320\275\320\270\321\206\320\260", Q_NULLPTR));
+        QTableWidgetItem *___qtablewidgetitem3 = table_tovar->horizontalHeaderItem(3);
+        ___qtablewidgetitem3->setText(QApplication::translate("RR_Cash", "    \320\246\320\265\320\275\320\260    ", Q_NULLPTR));
+        QTableWidgetItem *___qtablewidgetitem4 = table_tovar->horizontalHeaderItem(4);
+        ___qtablewidgetitem4->setText(QApplication::translate("RR_Cash", "    \320\241\321\203\320\274\320\274\320\260    ", Q_NULLPTR));
         menuRR_Cash_mini->setTitle(QApplication::translate("RR_Cash", "\320\244\320\260\320\271\320\273", Q_NULLPTR));
         menu->setTitle(QApplication::translate("RR_Cash", "\320\232\320\260\321\201\321\201\320\260", Q_NULLPTR));
         menu_2->setTitle(QApplication::translate("RR_Cash", "\320\247\320\265\320\272", Q_NULLPTR));

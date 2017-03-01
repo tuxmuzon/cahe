@@ -24,20 +24,20 @@ RR_Cash::RR_Cash(QWidget *parent) :    QMainWindow(parent),    ui(new Ui::RR_Cas
     ui->label_Itog->setText(trUtf8("0.00"));
     QString result_code = SHM.GetStatus("1");
     if(result_code=="0") {
-        // log  "KKM 1 OK ";
+        saveLog( "KKM 1 OK ");
     }  else{
         QMessageBox::warning(0,"Ошибка КАССЫ 1", result_code+"УСТРАНИТЕ ОШИБКУ И НАЖМИТЕ ЗАПРОСИТЬ СТАТУС");
-       // log "Ошибка КАССЫ 1" + result_code+"УСТРАНИТЕ ОШИБКУ И НАЖМИТЕ ЗАПРОСИТЬ СТАТУС"
+       saveLog("Ошибка КАССЫ 1" + result_code+"УСТРАНИТЕ ОШИБКУ И НАЖМИТЕ ЗАПРОСИТЬ СТАТУС");
     }
  result_code = SHM.GetStatus("2");
     if(result_code=="0") {
-        //log  "KKM 2 OK";
+        saveLog("KKM 2 OK");
     }  else{
         QMessageBox::warning(0,"Ошибка КАССЫ 2", result_code+"УСТРАНИТЕ ОШИБКУ И НАЖМИТЕ ЗАПРОСИТЬ СТАТУС");
-        // log "Ошибка КАССЫ 2" + result_code+"УСТРАНИТЕ ОШИБКУ И НАЖМИТЕ ЗАПРОСИТЬ СТАТУС"
+        saveLog("Ошибка КАССЫ 2" + result_code+"УСТРАНИТЕ ОШИБКУ И НАЖМИТЕ ЗАПРОСИТЬ СТАТУС");
     }
     if (! QFile::exists("settings.conf")){
-        // log не найден файл с настройками, генерируем по дефолту
+        saveLog("не найден файл с настройками, генерируем по дефолту");
         QSettings *settingscr = new QSettings("settings.conf",QSettings::IniFormat);
         settingscr->setValue("main/version","0.1.1");  //устанавливаем значение value=1
            settingscr->setValue("database/path","main.db");
@@ -45,14 +45,14 @@ RR_Cash::RR_Cash(QWidget *parent) :    QMainWindow(parent),    ui(new Ui::RR_Cas
     }
      QSettings *settings = new QSettings("settings.conf",QSettings::IniFormat);
 if (! QFile::exists(settings->value("database/path").toString())){
-   //log отствует файл бд проверьте его наличие, размер должен быть !=0
+   saveLog(" отствует файл бд проверьте его наличие, размер должен быть !=0");
     QMessageBox::warning(0,"Ошибка БД", "УСТРАНИТЕ ОШИБКУ ПУТЬ К БД НЕ НАЙДЕН");
 }
     dbase.setDatabaseName(settings->value("database/path").toString());
     if (!dbase.open()) {
-        qDebug() << dbase.lastError();
+         saveLog(dbase.lastError().text());
          QMessageBox::warning(0,"Ошибка БД", dbase.lastError().text());
-        qDebug() << "Db file not found";
+        //qDebug() << "Db file not found";
     }
     QSqlQuery query("select logical_name, name from device where active=\"1\" and type=\"FR\" ");
     while (query.next()) {
@@ -68,15 +68,18 @@ void RR_Cash::on_Exit_triggered() {
 void RR_Cash::keyPressEvent(QKeyEvent *event) {
     //Перемещение по строкам для сторнирования продаж
     if (event->key()==Qt::Key_Down) {
+        saveLog("Нажали вниз");
         ui->table_tovar->selectRow(ui->table_tovar->currentRow()+1);
     }
     //Перемещение по строкам для сторнирования продаж
     if (event->key()==Qt::Key_Up){
         ui->table_tovar->selectRow(ui->table_tovar->currentRow()-1);
+        saveLog("Нажали вверх");
     }
     //выполнение операции
     if (event->key()==Qt::Key_Enter||event->key()==Qt::Key_Return) {
-        if (ui->table_tovar->rowCount()>0&& VidCheka==1) {// чек продажи, здесь продажу + запрос егаис, если егаис не продался то спросить продавть без егаиса или нет?          
+        if (ui->table_tovar->rowCount()>0&& VidCheka==1) {
+            saveLog(" чек продажи, здесь продажу + запрос егаис, если егаис не продался то спросить продавть без егаиса или нет? ");
             QString sum_nall;
             if (ui->label_KolVo->text()!=""){
                 sum_nall = ui->label_KolVo->text();
@@ -94,7 +97,7 @@ void RR_Cash::keyPressEvent(QKeyEvent *event) {
             if ( sum_nall.toDouble()<ui->label_Itog->text().toDouble()) {
             } else  {
                 while (ui->table_tovar->rowCount()>0) {
-                    qDebug() << "формируем список для отправки в егаис и фискальник.";
+                    saveLog("формируем список для отправки в егаис и фискальник.");
                     QStringList urlKEP;
                     QList<QStringList> goods;
                     // ui->table_tovar->removeRow(0);
@@ -103,18 +106,17 @@ void RR_Cash::keyPressEvent(QKeyEvent *event) {
                         row.clear();
                         for (int j=0; j< ui->table_tovar->columnCount();j++){
                             row << ui->table_tovar->item(i,j)->text();
-                        }
-                        // qDebug() << row;
+                        }                        
                         goods << row;
                     }
-                    qDebug() << "берем группу печати 0 го элемента";
+                    saveLog("берем группу печати 0 го элемента");
                     row.clear();
                     row = goods[0];
                     QString group_print= row[8];
                     QList<QStringList> goodsGroupPrint;
                     double summ=0;
                     QString summ_row;
-                    qDebug() << "отбираем товары из этой группы печати";
+                    saveLog("отбираем товары из этой группы печати");
                     for (int i=0; i < goods.length(); i++){
                         row.clear();
                         row = goods[i];
@@ -492,6 +494,7 @@ void RR_Cash::on_action_4_triggered(){ //Окно настроек драйве�
     drvFR->dynamicCall("ShowProperties()");
     drvFR->setProperty("Password", "30");
     drvFR->dynamicCall("Disconnect()");
+    saveLog("Открыли окно настроек драйвера");
 }
 void RR_Cash::on_action_2_triggered(){ //проверка статуса кассы
     QInputDialog *dialog = new QInputDialog();
@@ -506,6 +509,7 @@ void RR_Cash::on_action_2_triggered(){ //проверка статуса кас�
         QString status= SHM.GetStatus(query.value(0).toString());
         if(status=="0") {
             QMessageBox::warning(0,"KKM Доступна", "Можно продолжать работу");
+            saveLog("Доступна касса с №"+query.value(0).toString());
         }
         else{
             qDebug() << "fisal_error";
@@ -526,12 +530,14 @@ void RR_Cash::on_action_triggered(){ // Отмена текущего чека
         QString status= SHM.CancelDocument(query.value(0).toString());
         if(status=="0") {
             QMessageBox::warning(0,"Чек отменен ", "Можно продолжать работу");
+            saveLog("Отменена печать на кассе№"+query.value(0).toString());
         }
         else{
             qDebug() << "fisal_error";
             QMessageBox::warning(0,"Ошибка", status);
         }
     }
+
 }
 void RR_Cash::on_action_3_triggered(){ //Продолжить печать
     //вынести в фискал
@@ -540,8 +546,7 @@ void RR_Cash::on_action_3_triggered(){ //Продолжить печать
     QString item = dialog->getItem(0, "Выберете Кассу", "Номер касс", kkms, 0, false, &accepted);
     QSqlQuery query("select logical_name from device where name=\""+item+"\"");
     query.next();
-    //  QString test = query.lastError().text();
-    // cout << test;
+
     qDebug() << "fr №" << query.value(0).toString();
     if (accepted){
         QAxWidget *test = new QAxWidget("AddIn.DrvFR");
@@ -554,7 +559,8 @@ void RR_Cash::on_action_3_triggered(){ //Продолжить печать
         test->dynamicCall("ContinuePrint()");
         test->setProperty("Password", "30");
         test->dynamicCall("Disconnect()");
-    }
+        saveLog("продолжить печать на кассе№"+query.value(0).toString());
+    }    
 }
 void RR_Cash::on_action_6_triggered() {// Меняем вид чека на "Возврат"
     UpdateVidCheka(2);
@@ -578,7 +584,7 @@ void RR_Cash::on_action_9_triggered(){  // Выводит таблицу с то
 }
 void RR_Cash::insert_chek(QString cahe_id, int oper_type, QString sum){
     QSqlQuery query;
-    saveLog("Проведена операция "+oper_type+' cache '+cahe_id+'На сумму'+sum);
+    saveLog("Проведена операция "+QString::number(oper_type)+" cache "+cahe_id+"На сумму"+sum);
     query.prepare("INSERT INTO chek ( goods_code, count, price, cost, shift, sale_number, excise, date_time, ope_type, cahe_id ) "
                   "VALUES ( :goods_code, :count, :price, :cost, :shift, :sale_number, :excise, :date_time, :ope_type, :cahe_id)");
     query.bindValue(":goods_code", 0);
