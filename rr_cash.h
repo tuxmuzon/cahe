@@ -14,7 +14,11 @@
 #include <QInputDialog>
 #include <QList>
 #include <QDialog>
+<<<<<<< HEAD
 #include <ui_rr_cash.h>
+=======
+//#include <ui_rr_cash.h>
+>>>>>>> b090455433da9df61679c382278cb0deedae3d0a
 namespace Ui {
 class RR_Cash;
 }
