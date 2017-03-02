@@ -6,6 +6,9 @@ priceInput::priceInput(QWidget *parent) :
     ui(new Ui::priceInput){
     ui->setupUi(this);
     ui->lineEdit->setFocus();
+    QDoubleValidator* validator =  new QDoubleValidator( 0.0, 9999.0, 2 );
+           validator->setNotation( QDoubleValidator::StandardNotation );
+          ui->lineEdit->setValidator( validator );
 }
 priceInput::~priceInput(){
     delete ui;
@@ -17,12 +20,13 @@ void priceInput::on_clear_clicked(){
     ui->lineEdit->clear();
 }
 void priceInput::on_dote_clicked(){
-   ui->lineEdit->setText(ui->lineEdit->text()+".");
+   ui->lineEdit->setText(ui->lineEdit->text()+",");
 }
 void priceInput::on_enter_clicked(){
     QString price=ui->lineEdit->text();
-    ui->lineEdit->clear();
-    emit priceEntering(price);
+    ui->lineEdit->clear();   
+    price.replace(",",".");
+    emit priceEntering(price);    
     //qlog введена цена в ручную price
     this->close();
 }
@@ -55,4 +59,10 @@ void priceInput::on_eight_clicked(){
 }
 void priceInput::on_nine_clicked(){
     ui->lineEdit->setText(ui->lineEdit->text()+"9");
+}
+void priceInput::keyPressEvent(QKeyEvent *event) {
+    if(event->key()==Qt::Key_Enter){
+        on_enter_clicked();
+    }
+    QWidget::keyPressEvent(event);
 }

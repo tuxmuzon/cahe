@@ -46,36 +46,36 @@ public:
     QWidget *gridLayoutWidget;
     QGridLayout *gridLayout_2;
     QGridLayout *gridLayout_4;
-    QPushButton *eight;
-    QPushButton *up;
     QPushButton *nine;
+    QPushButton *up;
     QLabel *label_VidCheka;
-    QPushButton *two2;
+    QPushButton *eight;
     QLabel *label_KolVo;
     QPushButton *three;
-    QPushButton *service;
+    QPushButton *two2;
+    QLabel *label_Itog;
     QPushButton *five;
     QPushButton *clear;
-    QLabel *label_Itog;
-    QGridLayout *gridLayout;
-    QLabel *discont_2;
+    QPushButton *service;
     QLabel *label;
     QPushButton *minus;
+    QGridLayout *gridLayout;
+    QLabel *discont_2;
     QPushButton *price;
     QPushButton *additionaly;
     QPushButton *Down;
     QPushButton *six;
     QPushButton *enter;
-    QPushButton *dote;
-    QPushButton *one;
     QPushButton *four;
-    QPushButton *seven;
+    QPushButton *one;
+    QPushButton *dote;
     QPushButton *discont;
     QPushButton *pushButton;
     QPushButton *zero;
-    QPushButton *tab_2;
-    QPushButton *product;
+    QPushButton *seven;
     QPushButton *tab;
+    QPushButton *product;
+    QPushButton *tab_2;
     QTableWidget *table_tovar;
     QMenuBar *menuBar;
     QMenu *menuRR_Cash_mini;
@@ -134,17 +134,17 @@ public:
         gridLayout_4->setSpacing(6);
         gridLayout_4->setContentsMargins(11, 11, 11, 11);
         gridLayout_4->setObjectName(QStringLiteral("gridLayout_4"));
-        eight = new QPushButton(centralWidget);
-        eight->setObjectName(QStringLiteral("eight"));
+        nine = new QPushButton(centralWidget);
+        nine->setObjectName(QStringLiteral("nine"));
         QSizePolicy sizePolicy1(QSizePolicy::Minimum, QSizePolicy::Expanding);
         sizePolicy1.setHorizontalStretch(0);
         sizePolicy1.setVerticalStretch(0);
-        sizePolicy1.setHeightForWidth(eight->sizePolicy().hasHeightForWidth());
-        eight->setSizePolicy(sizePolicy1);
-        eight->setFocusPolicy(Qt::NoFocus);
-        eight->setStyleSheet(QStringLiteral("font: 36pt \"MS Shell Dlg 2\";"));
+        sizePolicy1.setHeightForWidth(nine->sizePolicy().hasHeightForWidth());
+        nine->setSizePolicy(sizePolicy1);
+        nine->setFocusPolicy(Qt::NoFocus);
+        nine->setStyleSheet(QStringLiteral("font: 36pt \"MS Shell Dlg 2\";"));
 
-        gridLayout_4->addWidget(eight, 5, 8, 1, 1);
+        gridLayout_4->addWidget(nine, 5, 9, 1, 1);
 
         up = new QPushButton(centralWidget);
         up->setObjectName(QStringLiteral("up"));
@@ -154,15 +154,6 @@ public:
         up->setStyleSheet(QStringLiteral("font: 24pt \"MS Shell Dlg 2\";"));
 
         gridLayout_4->addWidget(up, 5, 10, 1, 1);
-
-        nine = new QPushButton(centralWidget);
-        nine->setObjectName(QStringLiteral("nine"));
-        sizePolicy1.setHeightForWidth(nine->sizePolicy().hasHeightForWidth());
-        nine->setSizePolicy(sizePolicy1);
-        nine->setFocusPolicy(Qt::NoFocus);
-        nine->setStyleSheet(QStringLiteral("font: 36pt \"MS Shell Dlg 2\";"));
-
-        gridLayout_4->addWidget(nine, 5, 9, 1, 1);
 
         label_VidCheka = new QLabel(centralWidget);
         label_VidCheka->setObjectName(QStringLiteral("label_VidCheka"));
@@ -176,14 +167,14 @@ public:
 
         gridLayout_4->addWidget(label_VidCheka, 11, 0, 1, 4);
 
-        two2 = new QPushButton(centralWidget);
-        two2->setObjectName(QStringLiteral("two2"));
-        sizePolicy1.setHeightForWidth(two2->sizePolicy().hasHeightForWidth());
-        two2->setSizePolicy(sizePolicy1);
-        two2->setFocusPolicy(Qt::NoFocus);
-        two2->setStyleSheet(QStringLiteral("font: 36pt \"MS Shell Dlg 2\";"));
+        eight = new QPushButton(centralWidget);
+        eight->setObjectName(QStringLiteral("eight"));
+        sizePolicy1.setHeightForWidth(eight->sizePolicy().hasHeightForWidth());
+        eight->setSizePolicy(sizePolicy1);
+        eight->setFocusPolicy(Qt::NoFocus);
+        eight->setStyleSheet(QStringLiteral("font: 36pt \"MS Shell Dlg 2\";"));
 
-        gridLayout_4->addWidget(two2, 8, 8, 1, 1);
+        gridLayout_4->addWidget(eight, 5, 8, 1, 1);
 
         label_KolVo = new QLabel(centralWidget);
         label_KolVo->setObjectName(QStringLiteral("label_KolVo"));
@@ -206,14 +197,22 @@ public:
 
         gridLayout_4->addWidget(three, 8, 9, 1, 1);
 
-        service = new QPushButton(centralWidget);
-        service->setObjectName(QStringLiteral("service"));
-        sizePolicy1.setHeightForWidth(service->sizePolicy().hasHeightForWidth());
-        service->setSizePolicy(sizePolicy1);
-        service->setFocusPolicy(Qt::NoFocus);
-        service->setStyleSheet(QStringLiteral("font: 24pt \"MS Shell Dlg 2\";"));
+        two2 = new QPushButton(centralWidget);
+        two2->setObjectName(QStringLiteral("two2"));
+        sizePolicy1.setHeightForWidth(two2->sizePolicy().hasHeightForWidth());
+        two2->setSizePolicy(sizePolicy1);
+        two2->setFocusPolicy(Qt::NoFocus);
+        two2->setStyleSheet(QStringLiteral("font: 36pt \"MS Shell Dlg 2\";"));
 
-        gridLayout_4->addWidget(service, 2, 8, 1, 1);
+        gridLayout_4->addWidget(two2, 8, 8, 1, 1);
+
+        label_Itog = new QLabel(centralWidget);
+        label_Itog->setObjectName(QStringLiteral("label_Itog"));
+        label_Itog->setMinimumSize(QSize(158, 0));
+        label_Itog->setFont(font);
+        label_Itog->setAlignment(Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter);
+
+        gridLayout_4->addWidget(label_Itog, 11, 6, 1, 3);
 
         five = new QPushButton(centralWidget);
         five->setObjectName(QStringLiteral("five"));
@@ -233,30 +232,19 @@ public:
 
         gridLayout_4->addWidget(clear, 2, 9, 1, 1);
 
-        label_Itog = new QLabel(centralWidget);
-        label_Itog->setObjectName(QStringLiteral("label_Itog"));
-        label_Itog->setMinimumSize(QSize(158, 0));
-        label_Itog->setFont(font);
-        label_Itog->setAlignment(Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter);
+        service = new QPushButton(centralWidget);
+        service->setObjectName(QStringLiteral("service"));
+        sizePolicy1.setHeightForWidth(service->sizePolicy().hasHeightForWidth());
+        service->setSizePolicy(sizePolicy1);
+        service->setFocusPolicy(Qt::NoFocus);
+        service->setStyleSheet(QStringLiteral("font: 24pt \"MS Shell Dlg 2\";"));
 
-        gridLayout_4->addWidget(label_Itog, 11, 6, 1, 3);
-
-        gridLayout = new QGridLayout();
-        gridLayout->setSpacing(6);
-        gridLayout->setObjectName(QStringLiteral("gridLayout"));
-
-        gridLayout_4->addLayout(gridLayout, 0, 10, 1, 1);
-
-        discont_2 = new QLabel(centralWidget);
-        discont_2->setObjectName(QStringLiteral("discont_2"));
-        QFont font2;
-        font2.setPointSize(14);
-        discont_2->setFont(font2);
-
-        gridLayout_4->addWidget(discont_2, 10, 1, 1, 1);
+        gridLayout_4->addWidget(service, 2, 8, 1, 1);
 
         label = new QLabel(centralWidget);
         label->setObjectName(QStringLiteral("label"));
+        QFont font2;
+        font2.setPointSize(14);
         label->setFont(font2);
 
         gridLayout_4->addWidget(label, 10, 0, 1, 1);
@@ -269,6 +257,18 @@ public:
         minus->setStyleSheet(QStringLiteral("color: rgb(255, 0, 0); font: 24pt \"MS Shell Dlg 2\";"));
 
         gridLayout_4->addWidget(minus, 0, 9, 1, 1);
+
+        gridLayout = new QGridLayout();
+        gridLayout->setSpacing(6);
+        gridLayout->setObjectName(QStringLiteral("gridLayout"));
+
+        gridLayout_4->addLayout(gridLayout, 0, 10, 1, 1);
+
+        discont_2 = new QLabel(centralWidget);
+        discont_2->setObjectName(QStringLiteral("discont_2"));
+        discont_2->setFont(font2);
+
+        gridLayout_4->addWidget(discont_2, 10, 1, 1, 1);
 
         price = new QPushButton(centralWidget);
         price->setObjectName(QStringLiteral("price"));
@@ -315,14 +315,14 @@ public:
 
         gridLayout_4->addWidget(enter, 8, 10, 4, 1);
 
-        dote = new QPushButton(centralWidget);
-        dote->setObjectName(QStringLiteral("dote"));
-        sizePolicy1.setHeightForWidth(dote->sizePolicy().hasHeightForWidth());
-        dote->setSizePolicy(sizePolicy1);
-        dote->setFocusPolicy(Qt::NoFocus);
-        dote->setStyleSheet(QStringLiteral("font: 36pt \"MS Shell Dlg 2\";"));
+        four = new QPushButton(centralWidget);
+        four->setObjectName(QStringLiteral("four"));
+        sizePolicy1.setHeightForWidth(four->sizePolicy().hasHeightForWidth());
+        four->setSizePolicy(sizePolicy1);
+        four->setFocusPolicy(Qt::NoFocus);
+        four->setStyleSheet(QStringLiteral("font: 36pt \"MS Shell Dlg 2\";"));
 
-        gridLayout_4->addWidget(dote, 10, 9, 1, 1);
+        gridLayout_4->addWidget(four, 6, 7, 1, 1);
 
         one = new QPushButton(centralWidget);
         one->setObjectName(QStringLiteral("one"));
@@ -333,23 +333,14 @@ public:
 
         gridLayout_4->addWidget(one, 8, 7, 1, 1);
 
-        four = new QPushButton(centralWidget);
-        four->setObjectName(QStringLiteral("four"));
-        sizePolicy1.setHeightForWidth(four->sizePolicy().hasHeightForWidth());
-        four->setSizePolicy(sizePolicy1);
-        four->setFocusPolicy(Qt::NoFocus);
-        four->setStyleSheet(QStringLiteral("font: 36pt \"MS Shell Dlg 2\";"));
+        dote = new QPushButton(centralWidget);
+        dote->setObjectName(QStringLiteral("dote"));
+        sizePolicy1.setHeightForWidth(dote->sizePolicy().hasHeightForWidth());
+        dote->setSizePolicy(sizePolicy1);
+        dote->setFocusPolicy(Qt::NoFocus);
+        dote->setStyleSheet(QStringLiteral("font: 36pt \"MS Shell Dlg 2\";"));
 
-        gridLayout_4->addWidget(four, 6, 7, 1, 1);
-
-        seven = new QPushButton(centralWidget);
-        seven->setObjectName(QStringLiteral("seven"));
-        sizePolicy1.setHeightForWidth(seven->sizePolicy().hasHeightForWidth());
-        seven->setSizePolicy(sizePolicy1);
-        seven->setFocusPolicy(Qt::NoFocus);
-        seven->setStyleSheet(QStringLiteral("font: 36pt \"MS Shell Dlg 2\";"));
-
-        gridLayout_4->addWidget(seven, 5, 7, 1, 1);
+        gridLayout_4->addWidget(dote, 10, 9, 1, 1);
 
         discont = new QPushButton(centralWidget);
         discont->setObjectName(QStringLiteral("discont"));
@@ -379,23 +370,14 @@ public:
 
         gridLayout_4->addWidget(zero, 10, 7, 1, 2);
 
-        tab_2 = new QPushButton(centralWidget);
-        tab_2->setObjectName(QStringLiteral("tab_2"));
-        sizePolicy1.setHeightForWidth(tab_2->sizePolicy().hasHeightForWidth());
-        tab_2->setSizePolicy(sizePolicy1);
-        tab_2->setFocusPolicy(Qt::NoFocus);
-        tab_2->setStyleSheet(QStringLiteral("font: 26pt \"MS Shell Dlg 2\";"));
+        seven = new QPushButton(centralWidget);
+        seven->setObjectName(QStringLiteral("seven"));
+        sizePolicy1.setHeightForWidth(seven->sizePolicy().hasHeightForWidth());
+        seven->setSizePolicy(sizePolicy1);
+        seven->setFocusPolicy(Qt::NoFocus);
+        seven->setStyleSheet(QStringLiteral("font: 36pt \"MS Shell Dlg 2\";"));
 
-        gridLayout_4->addWidget(tab_2, 3, 7, 1, 1);
-
-        product = new QPushButton(centralWidget);
-        product->setObjectName(QStringLiteral("product"));
-        sizePolicy1.setHeightForWidth(product->sizePolicy().hasHeightForWidth());
-        product->setSizePolicy(sizePolicy1);
-        product->setFocusPolicy(Qt::NoFocus);
-        product->setStyleSheet(QStringLiteral("font: 26pt \"MS Shell Dlg 2\";"));
-
-        gridLayout_4->addWidget(product, 3, 10, 1, 1);
+        gridLayout_4->addWidget(seven, 5, 7, 1, 1);
 
         tab = new QPushButton(centralWidget);
         tab->setObjectName(QStringLiteral("tab"));
@@ -406,9 +388,27 @@ public:
 
         gridLayout_4->addWidget(tab, 3, 8, 1, 2);
 
+        product = new QPushButton(centralWidget);
+        product->setObjectName(QStringLiteral("product"));
+        sizePolicy1.setHeightForWidth(product->sizePolicy().hasHeightForWidth());
+        product->setSizePolicy(sizePolicy1);
+        product->setFocusPolicy(Qt::NoFocus);
+        product->setStyleSheet(QStringLiteral("font: 26pt \"MS Shell Dlg 2\";"));
+
+        gridLayout_4->addWidget(product, 3, 10, 1, 1);
+
+        tab_2 = new QPushButton(centralWidget);
+        tab_2->setObjectName(QStringLiteral("tab_2"));
+        sizePolicy1.setHeightForWidth(tab_2->sizePolicy().hasHeightForWidth());
+        tab_2->setSizePolicy(sizePolicy1);
+        tab_2->setFocusPolicy(Qt::NoFocus);
+        tab_2->setStyleSheet(QStringLiteral("font: 26pt \"MS Shell Dlg 2\";"));
+
+        gridLayout_4->addWidget(tab_2, 3, 7, 1, 1);
+
         table_tovar = new QTableWidget(centralWidget);
-        if (table_tovar->columnCount() < 10)
-            table_tovar->setColumnCount(10);
+        if (table_tovar->columnCount() < 11)
+            table_tovar->setColumnCount(11);
         QFont font3;
         font3.setPointSize(13);
         QTableWidgetItem *__qtablewidgetitem = new QTableWidgetItem();
@@ -429,6 +429,18 @@ public:
         table_tovar->setHorizontalHeaderItem(4, __qtablewidgetitem4);
         QTableWidgetItem *__qtablewidgetitem5 = new QTableWidgetItem();
         table_tovar->setHorizontalHeaderItem(5, __qtablewidgetitem5);
+        QTableWidgetItem *__qtablewidgetitem6 = new QTableWidgetItem();
+        __qtablewidgetitem6->setTextAlignment(Qt::AlignCenter);
+        table_tovar->setHorizontalHeaderItem(6, __qtablewidgetitem6);
+        QTableWidgetItem *__qtablewidgetitem7 = new QTableWidgetItem();
+        table_tovar->setHorizontalHeaderItem(7, __qtablewidgetitem7);
+        QTableWidgetItem *__qtablewidgetitem8 = new QTableWidgetItem();
+        table_tovar->setHorizontalHeaderItem(8, __qtablewidgetitem8);
+        QTableWidgetItem *__qtablewidgetitem9 = new QTableWidgetItem();
+        table_tovar->setHorizontalHeaderItem(9, __qtablewidgetitem9);
+        QTableWidgetItem *__qtablewidgetitem10 = new QTableWidgetItem();
+        __qtablewidgetitem10->setTextAlignment(Qt::AlignCenter);
+        table_tovar->setHorizontalHeaderItem(10, __qtablewidgetitem10);
         table_tovar->setObjectName(QStringLiteral("table_tovar"));
         QSizePolicy sizePolicy2(QSizePolicy::Expanding, QSizePolicy::Expanding);
         sizePolicy2.setHorizontalStretch(0);
@@ -441,7 +453,7 @@ public:
         table_tovar->setFont(font4);
         table_tovar->setFocusPolicy(Qt::NoFocus);
         table_tovar->setEditTriggers(QAbstractItemView::NoEditTriggers);
-        table_tovar->setColumnCount(10);
+        table_tovar->setColumnCount(11);
 
         gridLayout_4->addWidget(table_tovar, 2, 0, 8, 7);
 
@@ -505,20 +517,20 @@ public:
         action_5->setText(QApplication::translate("RR_Cash", "\320\222\320\275\320\265\321\201\320\265\320\275\320\270\320\265", Q_NULLPTR));
         action_8->setText(QApplication::translate("RR_Cash", "\320\222\321\213\320\277\320\273\320\260\321\202\320\260", Q_NULLPTR));
         action_9->setText(QApplication::translate("RR_Cash", "\320\242\320\260\320\261\320\273\320\270\321\206\320\260", Q_NULLPTR));
-        eight->setText(QApplication::translate("RR_Cash", "8", Q_NULLPTR));
-        up->setText(QApplication::translate("RR_Cash", "\320\222\320\225\320\240\320\245", Q_NULLPTR));
         nine->setText(QApplication::translate("RR_Cash", "9", Q_NULLPTR));
+        up->setText(QApplication::translate("RR_Cash", "\320\222\320\225\320\240\320\245", Q_NULLPTR));
         label_VidCheka->setText(QApplication::translate("RR_Cash", "\320\222\320\270\320\264\320\247\320\265\320\272\320\260", Q_NULLPTR));
-        two2->setText(QApplication::translate("RR_Cash", "2", Q_NULLPTR));
+        eight->setText(QApplication::translate("RR_Cash", "8", Q_NULLPTR));
         label_KolVo->setText(QApplication::translate("RR_Cash", "KolVo", Q_NULLPTR));
         three->setText(QApplication::translate("RR_Cash", "3", Q_NULLPTR));
-        service->setText(QApplication::translate("RR_Cash", "\320\241\320\265\321\200\320\262\320\270\321\201", Q_NULLPTR));
+        two2->setText(QApplication::translate("RR_Cash", "2", Q_NULLPTR));
+        label_Itog->setText(QApplication::translate("RR_Cash", "\320\230\321\202\320\276\320\263\320\276: 0", Q_NULLPTR));
         five->setText(QApplication::translate("RR_Cash", "5", Q_NULLPTR));
         clear->setText(QApplication::translate("RR_Cash", "\320\236\321\202\320\274", Q_NULLPTR));
-        label_Itog->setText(QApplication::translate("RR_Cash", "\320\230\321\202\320\276\320\263\320\276: 0", Q_NULLPTR));
-        discont_2->setText(QString());
+        service->setText(QApplication::translate("RR_Cash", "\320\241\320\265\321\200\320\262\320\270\321\201", Q_NULLPTR));
         label->setText(QApplication::translate("RR_Cash", "\320\241\320\272\320\270\320\264\320\272\320\260", Q_NULLPTR));
         minus->setText(QApplication::translate("RR_Cash", "\320\241\321\202\320\276\321\200\320\275\320\276", Q_NULLPTR));
+        discont_2->setText(QString());
         price->setText(QApplication::translate("RR_Cash", "\320\246\320\265\320\275\320\260", Q_NULLPTR));
         additionaly->setText(QApplication::translate("RR_Cash", "\320\224\320\236\320\237", Q_NULLPTR));
         Down->setText(QApplication::translate("RR_Cash", "\320\235\320\230\320\227", Q_NULLPTR));
@@ -527,26 +539,38 @@ public:
         enter->setWhatsThis(QApplication::translate("RR_Cash", "\320\276\321\201\321\203\321\211\320\265\321\201\321\202\320\262\320\273\321\217\321\202\321\201\321\217 \320\277\320\276\320\264\321\202\320\262\320\265\321\200\320\266\320\264\320\265\320\275\320\270\320\265 \320\276\320\277\320\265\321\200\320\260\321\206\320\270\320\270", Q_NULLPTR));
 #endif // QT_NO_WHATSTHIS
         enter->setText(QApplication::translate("RR_Cash", "\320\222\320\262\320\276\320\264", Q_NULLPTR));
-        dote->setText(QApplication::translate("RR_Cash", ",", Q_NULLPTR));
-        one->setText(QApplication::translate("RR_Cash", "1", Q_NULLPTR));
         four->setText(QApplication::translate("RR_Cash", "4", Q_NULLPTR));
-        seven->setText(QApplication::translate("RR_Cash", "7", Q_NULLPTR));
+        one->setText(QApplication::translate("RR_Cash", "1", Q_NULLPTR));
+        dote->setText(QApplication::translate("RR_Cash", ",", Q_NULLPTR));
         discont->setText(QApplication::translate("RR_Cash", "\320\241\320\272\320\270\320\264\320\272\320\260", Q_NULLPTR));
         pushButton->setText(QApplication::translate("RR_Cash", "\320\236\321\207\320\270\321\201\321\202\320\270\321\202\321\214", Q_NULLPTR));
         zero->setText(QApplication::translate("RR_Cash", "0", Q_NULLPTR));
-        tab_2->setText(QApplication::translate("RR_Cash", "\320\232\320\276\320\264", Q_NULLPTR));
-        product->setText(QApplication::translate("RR_Cash", "\320\232\320\276\320\273-\320\262\320\276", Q_NULLPTR));
+        seven->setText(QApplication::translate("RR_Cash", "7", Q_NULLPTR));
         tab->setText(QApplication::translate("RR_Cash", "\320\250\321\202\321\200\320\270\321\205-\320\232\320\276\320\264", Q_NULLPTR));
+        product->setText(QApplication::translate("RR_Cash", "\320\232\320\276\320\273-\320\262\320\276", Q_NULLPTR));
+        tab_2->setText(QApplication::translate("RR_Cash", "\320\232\320\276\320\264", Q_NULLPTR));
         QTableWidgetItem *___qtablewidgetitem = table_tovar->horizontalHeaderItem(0);
         ___qtablewidgetitem->setText(QApplication::translate("RR_Cash", "\320\235\320\260\320\270\320\274\320\265\320\275\320\276\320\262\320\260\320\275\320\270\320\265", Q_NULLPTR));
         QTableWidgetItem *___qtablewidgetitem1 = table_tovar->horizontalHeaderItem(1);
-        ___qtablewidgetitem1->setText(QApplication::translate("RR_Cash", "   \320\232\320\276\320\273-\320\262\320\276    ", Q_NULLPTR));
+        ___qtablewidgetitem1->setText(QApplication::translate("RR_Cash", "    \320\232\320\276\320\273-\320\262\320\276     ", Q_NULLPTR));
         QTableWidgetItem *___qtablewidgetitem2 = table_tovar->horizontalHeaderItem(2);
         ___qtablewidgetitem2->setText(QApplication::translate("RR_Cash", "\320\225\320\264\320\270\320\275\320\270\321\206\320\260", Q_NULLPTR));
         QTableWidgetItem *___qtablewidgetitem3 = table_tovar->horizontalHeaderItem(3);
-        ___qtablewidgetitem3->setText(QApplication::translate("RR_Cash", "    \320\246\320\265\320\275\320\260    ", Q_NULLPTR));
+        ___qtablewidgetitem3->setText(QApplication::translate("RR_Cash", "     \320\246\320\265\320\275\320\260     ", Q_NULLPTR));
         QTableWidgetItem *___qtablewidgetitem4 = table_tovar->horizontalHeaderItem(4);
-        ___qtablewidgetitem4->setText(QApplication::translate("RR_Cash", "    \320\241\321\203\320\274\320\274\320\260    ", Q_NULLPTR));
+        ___qtablewidgetitem4->setText(QApplication::translate("RR_Cash", "     \320\241\321\203\320\274\320\274\320\260     ", Q_NULLPTR));
+        QTableWidgetItem *___qtablewidgetitem5 = table_tovar->horizontalHeaderItem(5);
+        ___qtablewidgetitem5->setText(QApplication::translate("RR_Cash", "test", Q_NULLPTR));
+        QTableWidgetItem *___qtablewidgetitem6 = table_tovar->horizontalHeaderItem(6);
+        ___qtablewidgetitem6->setText(QApplication::translate("RR_Cash", "test", Q_NULLPTR));
+        QTableWidgetItem *___qtablewidgetitem7 = table_tovar->horizontalHeaderItem(7);
+        ___qtablewidgetitem7->setText(QApplication::translate("RR_Cash", "test", Q_NULLPTR));
+        QTableWidgetItem *___qtablewidgetitem8 = table_tovar->horizontalHeaderItem(8);
+        ___qtablewidgetitem8->setText(QApplication::translate("RR_Cash", "test", Q_NULLPTR));
+        QTableWidgetItem *___qtablewidgetitem9 = table_tovar->horizontalHeaderItem(9);
+        ___qtablewidgetitem9->setText(QApplication::translate("RR_Cash", "test", Q_NULLPTR));
+        QTableWidgetItem *___qtablewidgetitem10 = table_tovar->horizontalHeaderItem(10);
+        ___qtablewidgetitem10->setText(QApplication::translate("RR_Cash", "\320\237\320\276\320\273\321\214\320\267. \320\232\320\276\320\264", Q_NULLPTR));
         menuRR_Cash_mini->setTitle(QApplication::translate("RR_Cash", "\320\244\320\260\320\271\320\273", Q_NULLPTR));
         menu->setTitle(QApplication::translate("RR_Cash", "\320\232\320\260\321\201\321\201\320\260", Q_NULLPTR));
         menu_2->setTitle(QApplication::translate("RR_Cash", "\320\247\320\265\320\272", Q_NULLPTR));

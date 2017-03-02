@@ -6,7 +6,7 @@
 #include <QApplication>
 #include <QDebug>
 #include <QDate>
-//#include "rr_cash.h"
+
 
 class fiscal : public QObject{
     Q_OBJECT

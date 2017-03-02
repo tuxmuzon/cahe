@@ -28,6 +28,7 @@ private slots:
     void on_seven_clicked();
     void on_eight_clicked();
     void on_nine_clicked();
+    void keyPressEvent(QKeyEvent *event);
 private:
     Ui::priceInput *ui;
 };

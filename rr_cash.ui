@@ -30,8 +30,8 @@
   </property>
   <widget class="QWidget" name="centralWidget">
    <layout class="QGridLayout" name="gridLayout_4">
-    <item row="5" column="8">
-     <widget class="QPushButton" name="eight">
+    <item row="5" column="9">
+     <widget class="QPushButton" name="nine">
       <property name="sizePolicy">
        <sizepolicy hsizetype="Minimum" vsizetype="Expanding">
         <horstretch>0</horstretch>
@@ -45,7 +45,7 @@
        <string notr="true">font: 36pt &quot;MS Shell Dlg 2&quot;;</string>
       </property>
       <property name="text">
-       <string>8</string>
+       <string>9</string>
       </property>
      </widget>
     </item>
@@ -68,25 +68,6 @@
       </property>
      </widget>
     </item>
-    <item row="5" column="9">
-     <widget class="QPushButton" name="nine">
-      <property name="sizePolicy">
-       <sizepolicy hsizetype="Minimum" vsizetype="Expanding">
-        <horstretch>0</horstretch>
-        <verstretch>0</verstretch>
-       </sizepolicy>
-      </property>
-      <property name="focusPolicy">
-       <enum>Qt::NoFocus</enum>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">font: 36pt &quot;MS Shell Dlg 2&quot;;</string>
-      </property>
-      <property name="text">
-       <string>9</string>
-      </property>
-     </widget>
-    </item>
     <item row="11" column="0" colspan="4">
      <widget class="QLabel" name="label_VidCheka">
       <property name="font">
@@ -105,8 +86,8 @@
       </property>
      </widget>
     </item>
-    <item row="8" column="8">
-     <widget class="QPushButton" name="two2">
+    <item row="5" column="8">
+     <widget class="QPushButton" name="eight">
       <property name="sizePolicy">
        <sizepolicy hsizetype="Minimum" vsizetype="Expanding">
         <horstretch>0</horstretch>
@@ -120,7 +101,7 @@
        <string notr="true">font: 36pt &quot;MS Shell Dlg 2&quot;;</string>
       </property>
       <property name="text">
-       <string>2</string>
+       <string>8</string>
       </property>
      </widget>
     </item>
@@ -163,8 +144,8 @@
       </property>
      </widget>
     </item>
-    <item row="2" column="8">
-     <widget class="QPushButton" name="service">
+    <item row="8" column="8">
+     <widget class="QPushButton" name="two2">
       <property name="sizePolicy">
        <sizepolicy hsizetype="Minimum" vsizetype="Expanding">
         <horstretch>0</horstretch>
@@ -175,10 +156,34 @@
        <enum>Qt::NoFocus</enum>
       </property>
       <property name="styleSheet">
-       <string notr="true">font: 24pt &quot;MS Shell Dlg 2&quot;;</string>
+       <string notr="true">font: 36pt &quot;MS Shell Dlg 2&quot;;</string>
       </property>
       <property name="text">
-       <string>Сервис</string>
+       <string>2</string>
+      </property>
+     </widget>
+    </item>
+    <item row="11" column="6" colspan="3">
+     <widget class="QLabel" name="label_Itog">
+      <property name="minimumSize">
+       <size>
+        <width>158</width>
+        <height>0</height>
+       </size>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>14</pointsize>
+        <weight>75</weight>
+        <italic>false</italic>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="text">
+       <string>Итого: 0</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
       </property>
      </widget>
     </item>
@@ -220,42 +225,22 @@
       </property>
      </widget>
     </item>
-    <item row="11" column="6" colspan="3">
-     <widget class="QLabel" name="label_Itog">
-      <property name="minimumSize">
-       <size>
-        <width>158</width>
-        <height>0</height>
-       </size>
+    <item row="2" column="8">
+     <widget class="QPushButton" name="service">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Minimum" vsizetype="Expanding">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
       </property>
-      <property name="font">
-       <font>
-        <pointsize>14</pointsize>
-        <weight>75</weight>
-        <italic>false</italic>
-        <bold>true</bold>
-       </font>
+      <property name="focusPolicy">
+       <enum>Qt::NoFocus</enum>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">font: 24pt &quot;MS Shell Dlg 2&quot;;</string>
       </property>
       <property name="text">
-       <string>Итого: 0</string>
-      </property>
-      <property name="alignment">
-       <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-      </property>
-     </widget>
-    </item>
-    <item row="0" column="10">
-     <layout class="QGridLayout" name="gridLayout"/>
-    </item>
-    <item row="10" column="1">
-     <widget class="QLabel" name="discont_2">
-      <property name="font">
-       <font>
-        <pointsize>14</pointsize>
-       </font>
-      </property>
-      <property name="text">
-       <string/>
+       <string>Сервис</string>
       </property>
      </widget>
     </item>
@@ -287,6 +272,21 @@
       </property>
       <property name="text">
        <string>Сторно</string>
+      </property>
+     </widget>
+    </item>
+    <item row="0" column="10">
+     <layout class="QGridLayout" name="gridLayout"/>
+    </item>
+    <item row="10" column="1">
+     <widget class="QLabel" name="discont_2">
+      <property name="font">
+       <font>
+        <pointsize>14</pointsize>
+       </font>
+      </property>
+      <property name="text">
+       <string/>
       </property>
      </widget>
     </item>
@@ -388,8 +388,8 @@
       </property>
      </widget>
     </item>
-    <item row="10" column="9">
-     <widget class="QPushButton" name="dote">
+    <item row="6" column="7">
+     <widget class="QPushButton" name="four">
       <property name="sizePolicy">
        <sizepolicy hsizetype="Minimum" vsizetype="Expanding">
         <horstretch>0</horstretch>
@@ -403,7 +403,7 @@
        <string notr="true">font: 36pt &quot;MS Shell Dlg 2&quot;;</string>
       </property>
       <property name="text">
-       <string>,</string>
+       <string>4</string>
       </property>
      </widget>
     </item>
@@ -426,8 +426,8 @@
       </property>
      </widget>
     </item>
-    <item row="6" column="7">
-     <widget class="QPushButton" name="four">
+    <item row="10" column="9">
+     <widget class="QPushButton" name="dote">
       <property name="sizePolicy">
        <sizepolicy hsizetype="Minimum" vsizetype="Expanding">
         <horstretch>0</horstretch>
@@ -441,26 +441,7 @@
        <string notr="true">font: 36pt &quot;MS Shell Dlg 2&quot;;</string>
       </property>
       <property name="text">
-       <string>4</string>
-      </property>
-     </widget>
-    </item>
-    <item row="5" column="7">
-     <widget class="QPushButton" name="seven">
-      <property name="sizePolicy">
-       <sizepolicy hsizetype="Minimum" vsizetype="Expanding">
-        <horstretch>0</horstretch>
-        <verstretch>0</verstretch>
-       </sizepolicy>
-      </property>
-      <property name="focusPolicy">
-       <enum>Qt::NoFocus</enum>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">font: 36pt &quot;MS Shell Dlg 2&quot;;</string>
-      </property>
-      <property name="text">
-       <string>7</string>
+       <string>,</string>
       </property>
      </widget>
     </item>
@@ -524,8 +505,27 @@
       </property>
      </widget>
     </item>
-    <item row="3" column="7">
-     <widget class="QPushButton" name="tab_2">
+    <item row="5" column="7">
+     <widget class="QPushButton" name="seven">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Minimum" vsizetype="Expanding">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="focusPolicy">
+       <enum>Qt::NoFocus</enum>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">font: 36pt &quot;MS Shell Dlg 2&quot;;</string>
+      </property>
+      <property name="text">
+       <string>7</string>
+      </property>
+     </widget>
+    </item>
+    <item row="3" column="8" colspan="2">
+     <widget class="QPushButton" name="tab">
       <property name="sizePolicy">
        <sizepolicy hsizetype="Minimum" vsizetype="Expanding">
         <horstretch>0</horstretch>
@@ -539,7 +539,7 @@
        <string notr="true">font: 26pt &quot;MS Shell Dlg 2&quot;;</string>
       </property>
       <property name="text">
-       <string>Код</string>
+       <string>Штрих-Код</string>
       </property>
      </widget>
     </item>
@@ -562,8 +562,8 @@
       </property>
      </widget>
     </item>
-    <item row="3" column="8" colspan="2">
-     <widget class="QPushButton" name="tab">
+    <item row="3" column="7">
+     <widget class="QPushButton" name="tab_2">
       <property name="sizePolicy">
        <sizepolicy hsizetype="Minimum" vsizetype="Expanding">
         <horstretch>0</horstretch>
@@ -577,7 +577,7 @@
        <string notr="true">font: 26pt &quot;MS Shell Dlg 2&quot;;</string>
       </property>
       <property name="text">
-       <string>Штрих-Код</string>
+       <string>Код</string>
       </property>
      </widget>
     </item>
@@ -602,7 +602,7 @@
        <set>QAbstractItemView::NoEditTriggers</set>
       </property>
       <property name="columnCount">
-       <number>10</number>
+       <number>11</number>
       </property>
       <column>
        <property name="text">
@@ -619,7 +619,7 @@
       </column>
       <column>
        <property name="text">
-        <string>   Кол-во    </string>
+        <string>    Кол-во     </string>
        </property>
        <property name="textAlignment">
         <set>AlignCenter</set>
@@ -635,7 +635,7 @@
       </column>
       <column>
        <property name="text">
-        <string>    Цена    </string>
+        <string>     Цена     </string>
        </property>
        <property name="textAlignment">
         <set>AlignCenter</set>
@@ -643,7 +643,7 @@
       </column>
       <column>
        <property name="text">
-        <string>    Сумма    </string>
+        <string>     Сумма     </string>
        </property>
        <property name="textAlignment">
         <set>AlignCenter</set>
@@ -651,13 +651,40 @@
       </column>
       <column>
        <property name="text">
-        <string/>
+        <string>test</string>
        </property>
       </column>
-      <column/>
-      <column/>
-      <column/>
-      <column/>
+      <column>
+       <property name="text">
+        <string>test</string>
+       </property>
+       <property name="textAlignment">
+        <set>AlignCenter</set>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>test</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>test</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>test</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>Польз. Код</string>
+       </property>
+       <property name="textAlignment">
+        <set>AlignCenter</set>
+       </property>
+      </column>
      </widget>
     </item>
    </layout>

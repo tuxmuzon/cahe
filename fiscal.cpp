@@ -1,10 +1,8 @@
 #include "fiscal.h"
-#include "ui_rr_cash.h"
 
 fiscal::fiscal(QObject *parent) : QObject(parent){
     drvFR->setControl("AddIn.DrvFR");
 }
-
 QString fiscal::GetStatus(QString FrN) { //Получение состояния ККМ
     //  drvFR->setControl("AddIn.DrvFR");
     QString FiscalStatus = "";
