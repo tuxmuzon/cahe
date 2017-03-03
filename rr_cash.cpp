@@ -8,6 +8,7 @@ QString discont;
 
 RR_Cash::RR_Cash(QWidget *parent) :    QMainWindow(parent),    ui(new Ui::RR_Cash){
     ui->setupUi(this);
+    saveLog("Запуск программы");
     ui->table_tovar->hideColumn(5);
     ui->table_tovar->hideColumn(6);
     ui->table_tovar->hideColumn(7);
@@ -542,7 +543,6 @@ void RR_Cash::on_action_triggered(){ // Отмена текущего чека
             QMessageBox::warning(0,"Ошибка", status);
         }
     }
-
 }
 void RR_Cash::on_action_3_triggered(){ //Продолжить печать
     //вынести в фискал
