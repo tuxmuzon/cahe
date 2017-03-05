@@ -160,19 +160,23 @@ void RR_Cash::keyPressEvent(QKeyEvent *event) {
                                     for(int i=0; i < goodsGroupPrint.length();i++) {
                                         row.clear();
                                         row << goodsGroupPrint[i];
-                                        QString id=row[10];
+                                        QString id=row[11];
                                         ui->table_tovar->removeRow(id.toInt());
                                     }
                                 }
                                 ui->label_KolVo->setText("Ответ успешен ,Печать QR кода");
                                 SHM.PrintURL(urlKEP,group_print);
-                            } else { QMessageBox::warning(0,"Ошибка КАССЫ", "Касса          "+group_print + " " +SHM.GetStatus(group_print)); break;}
+                            } else { QMessageBox::warning(0,"Ошибка КАССЫ", "Касса ЕГАИС          "+group_print + " " +SHM.GetStatus(group_print)); break;}
                             //начинаем парсить ответ
                         } else {break;}
                     } else {
-                        if (SHM.GetStatus(group_print)=="0"){
+                            QString fiscalStatus=SHM.GetStatus(group_print);
+                            qDebug() << "fiscal status" << fiscalStatus;
+                        if (fiscalStatus=="0"||fiscalStatus=="5"){
                             ui->label_KolVo->setText("печать чека № "+group_print);
-                            if (SHM.SaleDocument(goodsGroupPrint,group_print,QString::number(summ).replace(".",","),discont)=="0"){
+                            QString returnStatus=SHM.SaleDocument(goodsGroupPrint,group_print,QString::number(summ).replace(".",","),discont);
+                            qDebug() << "return_status" << returnStatus;
+                            if (returnStatus=="0"){
                                 qDebug() << "discont" << discont;
                                 insert_sale(group_print,VidCheka,goodsGroupPrint);
                                 UpdateItog();
@@ -180,11 +184,11 @@ void RR_Cash::keyPressEvent(QKeyEvent *event) {
                                 for(int i=0; i < goodsGroupPrint.length();i++) {
                                     row.clear();
                                     row << goodsGroupPrint[i];
-                                    QString id=row[10];
+                                    QString id=row[11];
                                     ui->table_tovar->removeRow(id.toInt());
                                 }
                             }
-                        } else {QMessageBox::warning(0,"Ошибка КАССЫ", "Касса "+group_print + " " +SHM.GetStatus(group_print)); break;}
+                        } else {QMessageBox::warning(0,"Ошибка ОБЩЕЙ КАССЫ", "Касса "+group_print + " " +fiscalStatus); break;}
                     }
                 }
             }
@@ -851,7 +855,6 @@ void RR_Cash::on_price_clicked(){
         count.clear();
     }
 }
-
 void RR_Cash::saveLog(const QString &datastr){
     if (! QFile::exists("log")){
         QDir().mkdir("log");

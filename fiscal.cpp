@@ -3,6 +3,9 @@
 fiscal::fiscal(QObject *parent) : QObject(parent){
     drvFR->setControl("AddIn.DrvFR");
 }
+
+//FNDiscountOperation
+//ФНОперацияСоСкидками
 QString fiscal::GetStatus(QString FrN) { //Получение состояния ККМ
     //  drvFR->setControl("AddIn.DrvFR");
     QString FiscalStatus = "";
@@ -125,7 +128,16 @@ QString fiscal::SaleDocument(QList<QStringList> egaisgoods, QString FrN,  QStrin
         drvFR->setProperty("Tax4", "0");
         drvFR->setProperty("StringForPrinting", row[0]);
         drvFR->dynamicCall("Sale()");
+        drvFR->dynamicCall("SetSumm1(456,01)", "1,00");
+        drvFR->setProperty("Tax1", "0");
+        drvFR->setProperty("Tax2", "0");
+        drvFR->setProperty("Tax3", "0");
+        drvFR->setProperty("Tax4", "0");
+         drvFR->setProperty("StringForPrinting", "СКИДКА");
+        QVariant ResultCode1 = drvFR->dynamicCall("Discount()");
+        cout << "discont error" << ResultCode1.value<QString>();
         //   drvFR->dynamicCall("StornoDiscount()");
+         qApp->processEvents();
     }
     // drvFR->setProperty("Password", "30");
     drvFR->dynamicCall("SetSumm1(456,01)", "1,00");
@@ -134,8 +146,7 @@ QString fiscal::SaleDocument(QList<QStringList> egaisgoods, QString FrN,  QStrin
     drvFR->setProperty("Tax3", "0");
     drvFR->setProperty("Tax4", "0");
     drvFR->setProperty("StringForPrinting", "");
-    QVariant ResultCode1 = drvFR->dynamicCall("Discont()");
-    cout << "discont error" << ResultCode1.value<QString>();
+     qApp->processEvents();
     drvFR->dynamicCall("SetSumm1(456,01)", nal_sum);
     drvFR->setProperty("StringForPrinting", "+++++++++++++++++-------+++++++++++++++");
     drvFR->dynamicCall("CloseCheck()");
