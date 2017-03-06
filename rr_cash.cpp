@@ -146,7 +146,7 @@ void RR_Cash::keyPressEvent(QKeyEvent *event) {
                         qDebug() << "alcolist is not clean";
                         ui->label_KolVo->setText("Отправка в ЕГАИС");
                         saveLog("Отправка в ЕГАИС");
-                        if(newEgais.GetEgaisString(goodsAlcoPrint,group_print)!="-1"){
+                        if(newEgais.GetEgaisString(goodsAlcoPrint,group_print,VidCheka)!="-1"){
                             saveLog("Разбор ответа");
                             ui->label_KolVo->setText("Разбор ответа");
                             urlKEP =    newEgais.ParseXML();
@@ -300,7 +300,7 @@ void RR_Cash::keyPressEvent(QKeyEvent *event) {
                     //провеярем alcolist что он не пустой
                     if(!goodsAlcoPrint.empty()){
                         qDebug() << "alcolist is not clean";
-                        if(newEgais.GetEgaisString(goodsAlcoPrint,group_print)!="-1"){
+                        if(newEgais.GetEgaisString(goodsAlcoPrint,group_print,VidCheka)!="-1"){
                             urlKEP =    newEgais.ParseXML();
                             qDebug() << "GETT"  << urlKEP;
                             if (SHM.GetStatus(group_print)=="0"&&urlKEP[0]!="-1"){

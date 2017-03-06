@@ -16,7 +16,7 @@ QString egais::getalcocode( QString axcise_mark){
     return alcocode;
 }
 
-QString egais::GetEgaisString( QList<QStringList> egaisgoods, QString FrN ){
+QString egais::GetEgaisString(QList<QStringList> egaisgoods, QString FrN, int VidCheka ){
 
     //1) Create xml to send
     //2) send xml
@@ -183,6 +183,10 @@ QString egais::GetEgaisString( QList<QStringList> egaisgoods, QString FrN ){
             } else {price.append(".00");}
 
         //    qDebug() << price <<  price;
+            if (VidCheka==2){
+                price="-"+price;
+            }
+
             xml.writeAttribute("price",price);
 
             QString volume =  row[6];

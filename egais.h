@@ -22,7 +22,7 @@ signals:
 
 public slots:  
     QString getalcocode( QString axcise_mark);
-    QString GetEgaisString( QList<QStringList> egaisgoods, QString FrN);
+    QString GetEgaisString(QList<QStringList> egaisgoods, QString FrN, int VidCheka);
     QStringList ParseXML();
 
 };
