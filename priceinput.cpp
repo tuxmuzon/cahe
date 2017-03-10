@@ -24,14 +24,14 @@ void priceInput::on_dote_clicked(){
 }
 void priceInput::on_enter_clicked(){
     QString price=ui->lineEdit->text();
-    ui->lineEdit->clear();   
+    ui->lineEdit->clear();
     price.replace(",",".");
-     if (price.toDouble()>0){
-    emit priceEntering(price);    
-    //qlog введена цена в ручную price
-    this->close();
-     }
-     else  QMessageBox::warning(0,"Предупреждение", "Цена должна быть больше 0");
+    if (price.toDouble()>0){
+        emit priceEntering(price);
+        //qlog введена цена в ручную price
+        this->close();
+    }
+    else  QMessageBox::warning(0,"Предупреждение", "Цена должна быть больше 0");
 }
 void priceInput::on_one_clicked(){
     ui->lineEdit->setText(ui->lineEdit->text()+"1");
@@ -64,8 +64,12 @@ void priceInput::on_nine_clicked(){
     ui->lineEdit->setText(ui->lineEdit->text()+"9");
 }
 void priceInput::keyPressEvent(QKeyEvent *event) {
-    if(event->key()==Qt::Key_Enter){
+    if(event->key()==Qt::Key_Enter||event->key()==Qt::Key_Return){
         on_enter_clicked();
     }
+    if(event->key()==Qt::Key_Delete){
+        on_clear_clicked();
+    }
+
     QWidget::keyPressEvent(event);
 }
