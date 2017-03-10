@@ -409,6 +409,10 @@ void RR_Cash::keyPressEvent(QKeyEvent *event) {
     if(event->key()==Qt::Key_F10){
         on_tab_2_clicked();
     }
+    //поменять цену
+    if(event->key()==Qt::Key_F9){
+        on_price_clicked();
+    }
     switch(event->key()) {
     case Qt::Key_X:
         if(event->modifiers() & Qt::ShiftModifier) {

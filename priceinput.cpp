@@ -68,7 +68,7 @@ void priceInput::keyPressEvent(QKeyEvent *event) {
     if(event->key()==Qt::Key_Enter||event->key()==Qt::Key_Return){
         on_enter_clicked();
     }
-    if(event->key()==Qt::Key_Delete){
+    if(event->key()==Qt::Key_F11){
         on_clear_clicked();
     }
     if(event->key()==44){
