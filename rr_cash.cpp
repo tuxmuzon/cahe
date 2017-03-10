@@ -650,7 +650,7 @@ void RR_Cash::on_minus_clicked(){
     saveLog("Нажата клавиша Минус, операция сторно");
 }
 void RR_Cash::on_product_clicked(){
-    if (ui->label_KolVo->text()!=""){
+    if (ui->label_KolVo->text().toDouble()>0){
         QKeyEvent event(QEvent::KeyPress, 42, Qt::NoModifier);
         QApplication::sendEvent(this, &event);
         saveLog("Нажата клавиша * измененено количество");
@@ -841,7 +841,7 @@ void RR_Cash::on_tab_2_clicked(){
 void RR_Cash::on_price_clicked(){
     // пологике пересчет можно вынести в функцию отделюную
     QString sum_row;
-    if (ui->label_KolVo->text()!=""){
+    if (ui->label_KolVo->text().toDouble()>0){
         ui->table_tovar->setItem(ui->table_tovar->currentRow(),3,new QTableWidgetItem(ui->label_KolVo->text()));
         saveLog("Установлена цена в ручную "+ ui->label_KolVo->text());
         sum_row.setNum(ui->table_tovar->item(ui->table_tovar->currentRow(),3)->text().replace(",",".").toDouble()*ui->table_tovar->item(ui->table_tovar->currentRow(),1)->text().toDouble());

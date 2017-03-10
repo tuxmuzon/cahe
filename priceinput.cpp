@@ -70,6 +70,8 @@ void priceInput::keyPressEvent(QKeyEvent *event) {
     if(event->key()==Qt::Key_Delete){
         on_clear_clicked();
     }
-
+    if(event->key()==44){
+       ui->lineEdit->setText(ui->lineEdit->text()+",");
+    }
     QWidget::keyPressEvent(event);
 }
