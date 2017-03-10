@@ -2,6 +2,7 @@
 #define PRICEINPUT_H
 #include <QWidget>
 #include "QKeyEvent"
+#include <QMessageBox>
 
 namespace Ui {
     class priceInput;

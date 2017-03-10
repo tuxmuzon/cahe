@@ -26,9 +26,12 @@ void priceInput::on_enter_clicked(){
     QString price=ui->lineEdit->text();
     ui->lineEdit->clear();   
     price.replace(",",".");
+     if (price.toDouble()>0){
     emit priceEntering(price);    
     //qlog введена цена в ручную price
     this->close();
+     }
+     else  QMessageBox::warning(0,"Предупреждение", "Цена должна быть больше 0");
 }
 void priceInput::on_one_clicked(){
     ui->lineEdit->setText(ui->lineEdit->text()+"1");

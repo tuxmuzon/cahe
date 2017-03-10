@@ -27,6 +27,7 @@ public slots:
     QString GetCurrentShift(QString FrN);
     QString GetCurrentDoc(QString FrN);
     QString GetSerialNumber(QString FrN);
+    QString FNDiscountOperation(QList<QStringList> egaisgoods, QString FrN,  QString nal_sum, QString discont);
 private:
     QAxWidget *drvFR = new QAxWidget();
 };

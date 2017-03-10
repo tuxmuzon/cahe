@@ -395,3 +395,56 @@ QString fiscal::GetSerialNumber(QString FrN){
     }
     return SerialNumber;
 }
+QString fiscal::FNDiscountOperation(QList<QStringList> egaisgoods, QString FrN,  QString nal_sum, QString discont){
+    qApp->processEvents();
+    QTextStream cout(stdout);
+    if (FrN=="0") {FrN="1";}
+    drvFR->dynamicCall("LDNumber",FrN);
+    drvFR->dynamicCall("SetActiveLD()");
+    drvFR->setProperty("Password", "30");
+    drvFR->setProperty("CheckType","0");
+   QStringList row;
+    for (int i=0; i < egaisgoods.size(); i++) {
+        // <<StringForPrint << Price << Quantity
+        row = egaisgoods[i];
+        qDebug() <<"roww" <<row;
+        qDebug() <<"nal_summ" <<nal_sum;
+        QString price=row[3];
+        price=price.replace(".",",");
+        drvFR->setProperty("Quantity", row[1]);
+        drvFR->dynamicCall("SetPrice(0,0)", price);
+        drvFR->dynamicCall("SetDiscountValue(0,0)","1,00");
+       // drvFR->dynamicCall("SeChargeValue(0,0)","0,00");
+        //drvFR->setProperty("Price", price);//.toInt(&ok, 10)
+        drvFR->setProperty("Department", "1");
+        drvFR->setProperty("Tax1", "0");
+      //  drvFR->setProperty("Tax2", "0");
+          drvFR->setProperty("DocumentName", "DocumentName");
+        drvFR->setProperty("BarCode", "123467");
+        drvFR->setProperty("StringForPrinting", row[0]);
+        drvFR->dynamicCall("FNDiscountOperation()");
+         qApp->processEvents();
+    }
+    // drvFR->setProperty("Password", "30");
+    drvFR->dynamicCall("SetSumm1(456,01)", "1,00");
+    drvFR->setProperty("Tax1", "0");
+    drvFR->setProperty("Tax2", "0");
+    drvFR->setProperty("Tax3", "0");
+    drvFR->setProperty("Tax4", "0");
+    drvFR->setProperty("StringForPrinting", "");
+     qApp->processEvents();
+    drvFR->dynamicCall("SetSumm1(456,01)", nal_sum);
+    drvFR->setProperty("StringForPrinting", "+++++++++++++++++-------+++++++++++++++");
+    drvFR->dynamicCall("CloseCheck()");
+    QVariant ResultCode = drvFR->dynamicCall("ResultCode()");
+    QVariant ResultDescription = drvFR->dynamicCall("ResultCodeDescription()");
+    QString FiscalStatus = "";
+    if (ResultCode.value<QString>()=="0"){
+        FiscalStatus="0";
+    }   else {
+        FiscalStatus=ResultCode.value<QString>()+"/" + ResultDescription.value<QString>();
+    }
+    drvFR->setProperty("Password", "01");
+    drvFR->dynamicCall("Disconnect()");
+    return FiscalStatus;
+}

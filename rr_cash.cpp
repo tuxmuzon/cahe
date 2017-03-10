@@ -1,7 +1,6 @@
 #include "rr_cash.h"
 #include "ui_rr_cash.h"
 
-
 egais newEgais;
 QStringList kkms;
 QString discont;
@@ -175,6 +174,7 @@ void RR_Cash::keyPressEvent(QKeyEvent *event) {
                         if (fiscalStatus=="0"||fiscalStatus=="5"){
                             ui->label_KolVo->setText("печать чека № "+group_print);
                             QString returnStatus=SHM.SaleDocument(goodsGroupPrint,group_print,QString::number(summ).replace(".",","),discont);
+                           // QString returnStatus=SHM.FNDiscountOperation(goodsGroupPrint,group_print,QString::number(summ).replace(".",","),discont);
                             qDebug() << "return_status" << returnStatus;
                             if (returnStatus=="0"){
                                 qDebug() << "discont" << discont;
@@ -752,14 +752,12 @@ void RR_Cash::on_additionaly_clicked(){
     saveLog("вызван дополнительный диалог");
 }
 void RR_Cash::getaPrice(QString price){
-    // log цена price введена в ручную
-    if (price.toDouble()>0){
+    // log цена price введена в ручную  
         ui->table_tovar->setItem(0,3,new QTableWidgetItem(price));
         QString sum_row;
         sum_row.setNum(ui->table_tovar->item(0,3)->text().replace(",",".").toDouble()*ui->table_tovar->item(0,1)->text().replace(",",".").toDouble());
         ui->table_tovar->setItem(0,4,new QTableWidgetItem(sum_row.replace(".",",")));
-        UpdateItog();
-    } else ui->table_tovar->removeRow(ui->table_tovar->currentRow());
+        UpdateItog();  
 }
 void RR_Cash::on_tab_2_clicked(){
     // лог тоже поиск по коду, логика как со ШК, можно свернуть в процедуру
