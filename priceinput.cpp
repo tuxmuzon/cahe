@@ -9,9 +9,10 @@ priceInput::priceInput(QWidget *parent) :
     QDoubleValidator* validator =  new QDoubleValidator( 0.0, 9999.0, 2 );
            validator->setNotation( QDoubleValidator::StandardNotation );
           ui->lineEdit->setValidator( validator );
+          setWindowFlags( Qt::Window | Qt::WindowTitleHint | Qt::CustomizeWindowHint );
 }
 priceInput::~priceInput(){
-    delete ui;
+     delete ui;
 }
 void priceInput::on_zero_clicked(){
     ui->lineEdit->setText(ui->lineEdit->text()+"0");

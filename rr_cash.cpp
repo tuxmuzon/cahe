@@ -377,7 +377,7 @@ void RR_Cash::keyPressEvent(QKeyEvent *event) {
         }
     }
     else if (event->key()==42) {// символ * ввод количества
-        if (ui->table_tovar->rowCount()>0 && ui->table_tovar->item(ui->table_tovar->currentRow(),5)->text()==""){
+        if (ui->table_tovar->rowCount()>0 && ui->table_tovar->item(ui->table_tovar->currentRow(),5)->text()==""&&count.toDouble()>0){
             ui->table_tovar->setItem(ui->table_tovar->currentRow(),1,new QTableWidgetItem(count));
             QString sum_row;
             sum_row.setNum(ui->table_tovar->item(ui->table_tovar->currentRow(),3)->text().replace(",",".").toDouble()*ui->table_tovar->item(ui->table_tovar->currentRow(),1)->text().toDouble());
@@ -649,12 +649,10 @@ void RR_Cash::on_minus_clicked(){
     QApplication::sendEvent(this, &event);
     saveLog("Нажата клавиша Минус, операция сторно");
 }
-void RR_Cash::on_product_clicked(){
-    if (ui->label_KolVo->text().toDouble()>0){
+void RR_Cash::on_product_clicked(){   
         QKeyEvent event(QEvent::KeyPress, 42, Qt::NoModifier);
         QApplication::sendEvent(this, &event);
         saveLog("Нажата клавиша * измененено количество");
-    }
 }
 void RR_Cash::on_tab_clicked(){
     QKeyEvent event(QEvent::KeyPress, Qt::Key_Tab, Qt::NoModifier);
@@ -753,11 +751,11 @@ void RR_Cash::on_additionaly_clicked(){
 }
 void RR_Cash::getaPrice(QString price){
     // log цена price введена в ручную  
+
         ui->table_tovar->setItem(0,3,new QTableWidgetItem(price));
         QString sum_row;
         sum_row.setNum(ui->table_tovar->item(0,3)->text().replace(",",".").toDouble()*ui->table_tovar->item(0,1)->text().replace(",",".").toDouble());
-        ui->table_tovar->setItem(0,4,new QTableWidgetItem(sum_row.replace(".",",")));
-        UpdateItog();  
+        ui->table_tovar->setItem(0,4,new QTableWidgetItem(sum_row.replace(".",",")));     
 }
 void RR_Cash::on_tab_2_clicked(){
     // лог тоже поиск по коду, логика как со ШК, можно свернуть в процедуру
