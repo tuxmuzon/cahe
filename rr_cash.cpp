@@ -814,7 +814,7 @@ void RR_Cash::on_tab_2_clicked(){
             ui->label_Itog->setText(sum_row.replace(".",","));
             ui->table_tovar->selectRow(0);
             ui->label_KolVo->clear();
-            if (query.value(4).toString()=="yes"){
+            if (query.value(4).toString()=="1"){
                 //keyboardInputInterval - сие свойство позволяет отличить штрих код от вводжа с клавы
                 //                       QString lang = QApplication::inputMethod()->locale().name();
                 //                      qDebug()<<lang;
