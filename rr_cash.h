@@ -79,6 +79,8 @@ private slots:
     QString egaisReplace(QString str);
     void on_pushButton_2_clicked();
 
+    void on_zero2_clicked();
+
 public slots:
     void getaPrice (QString price);
     void on_actionZ_triggered();

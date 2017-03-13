@@ -945,8 +945,17 @@ void RR_Cash::on_pushButton_2_clicked(){
 }
 void RR_Cash::closeEvent(QCloseEvent *e){
     if (ui->table_tovar->rowCount()>0){//Вызываем функцию например: сохранения файла
-        QMessageBox::warning(0,"Предупреждение", "Есть открытый чек");
+        QMessageBox::warning(0,"Предупреждение", "Есть открытый чек, отмените чек перед закрытием");
       //  e->accept();
          e->ignore();
+    }
+}
+
+void RR_Cash::on_zero2_clicked()
+{
+    for (int i=0; i < 2; i++){
+        QKeyEvent event(QEvent::KeyPress, Qt::Key_0, Qt::NoModifier);
+        QApplication::sendEvent(this, &event);
+        saveLog("Нажата клавиша 0");
     }
 }
