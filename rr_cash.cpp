@@ -823,8 +823,8 @@ void RR_Cash::on_tab_2_clicked(){
                                                      tr("Отсканируйте акцизную марку"), QLineEdit::Normal,"", &ok);
                 if (ok) {
                     alcochek = true;
-                    barcode.clear();
-                    ui->table_tovar->setItem(0,5,new QTableWidgetItem(text));
+                    barcode.clear();                    
+                    ui->table_tovar->setItem(0,5,new QTableWidgetItem(egaisReplace(text)));
                     ui->table_tovar->setItem(0,6,new QTableWidgetItem(query.value(8).toString()));
                     qDebug() << ui->table_tovar->item(0,5)->text();
                     saveLog( "добавлен акцизный товар с кодом "+ query.value(5).toString() +" и маркой "+text);
@@ -870,4 +870,34 @@ void RR_Cash::saveLog(const QString &datastr){
         return;
     logfile->write(datastr.toLocal8Bit());
     logfile->close();
+}
+
+QString RR_Cash::egaisReplace(QString str){
+    str.replace("Я","Z");
+    str.replace("Ч","X");
+    str.replace("С","C");
+    str.replace("М","V");
+    str.replace("И","B");
+    str.replace("Т","N");
+    str.replace("Ь","M");
+    str.replace("Ф","A");
+    str.replace("Ы","S");
+    str.replace("В","D");
+    str.replace("А","F");
+    str.replace("П","G");
+    str.replace("Р","H");
+    str.replace("О","J");
+    str.replace("Л","K");
+    str.replace("Д","L");
+    str.replace("Й","Q");
+    str.replace("Ц","W");
+    str.replace("У","E");
+    str.replace("К","R");
+    str.replace("Е","T");
+    str.replace("Н","Y");
+    str.replace("Г","U");
+    str.replace("Ш","I");
+    str.replace("Щ","O");
+    str.replace("З","P");
+    return str;
 }

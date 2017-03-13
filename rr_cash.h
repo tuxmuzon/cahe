@@ -76,6 +76,7 @@ private slots:
     void on_tab_2_clicked();
     void on_price_clicked();
     void saveLog(const QString &datastr);
+    QString egaisReplace(QString str);
 public slots:
     void getaPrice (QString price);
     void on_actionZ_triggered();
