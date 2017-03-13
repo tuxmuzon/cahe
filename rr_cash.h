@@ -95,5 +95,6 @@ private:
     Ui::RR_Cash *ui;
 protected:
     virtual void keyPressEvent(QKeyEvent *event);
+    virtual void closeEvent(QCloseEvent *e);
 };
 #endif // RR_CASH_H

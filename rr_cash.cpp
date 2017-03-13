@@ -909,7 +909,6 @@ void RR_Cash::saveLog(const QString &datastr){
     logfile->write(datastr.toLocal8Bit());
     logfile->close();
 }
-
 QString RR_Cash::egaisReplace(QString str){
     str.replace("Я","Z");
     str.replace("Ч","X");
@@ -939,9 +938,15 @@ QString RR_Cash::egaisReplace(QString str){
     str.replace("З","P");
     return str;
 }
-
 void RR_Cash::on_pushButton_2_clicked(){
         QKeyEvent event(QEvent::KeyPress, Qt::Key_Backspace, Qt::NoModifier);
         QApplication::sendEvent(this, &event);
         saveLog("Нажата клавиша Стереть");
+}
+void RR_Cash::closeEvent(QCloseEvent *e){
+    if (ui->table_tovar->rowCount()>0){//Вызываем функцию например: сохранения файла
+        QMessageBox::warning(0,"Предупреждение", "Есть открытый чек");
+      //  e->accept();
+         e->ignore();
+    }
 }
