@@ -60,6 +60,7 @@ public:
     QLabel *label;
     QPushButton *minus;
     QGridLayout *gridLayout;
+    QPushButton *pushButton_2;
     QLabel *discont_2;
     QPushButton *price;
     QPushButton *additionaly;
@@ -261,6 +262,14 @@ public:
         gridLayout = new QGridLayout();
         gridLayout->setSpacing(6);
         gridLayout->setObjectName(QStringLiteral("gridLayout"));
+        pushButton_2 = new QPushButton(centralWidget);
+        pushButton_2->setObjectName(QStringLiteral("pushButton_2"));
+        sizePolicy1.setHeightForWidth(pushButton_2->sizePolicy().hasHeightForWidth());
+        pushButton_2->setSizePolicy(sizePolicy1);
+        pushButton_2->setStyleSheet(QStringLiteral("font: 20pt \"MS Shell Dlg 2\";"));
+
+        gridLayout->addWidget(pushButton_2, 0, 0, 1, 1);
+
 
         gridLayout_4->addLayout(gridLayout, 0, 10, 1, 1);
 
@@ -530,6 +539,7 @@ public:
         service->setText(QApplication::translate("RR_Cash", "\320\241\320\265\321\200\320\262\320\270\321\201", Q_NULLPTR));
         label->setText(QApplication::translate("RR_Cash", "\320\241\320\272\320\270\320\264\320\272\320\260", Q_NULLPTR));
         minus->setText(QApplication::translate("RR_Cash", "\320\241\321\202\320\276\321\200\320\275\320\276", Q_NULLPTR));
+        pushButton_2->setText(QApplication::translate("RR_Cash", "\320\241\321\202\320\265\321\200\320\265\321\202\321\214", Q_NULLPTR));
         discont_2->setText(QString());
         price->setText(QApplication::translate("RR_Cash", "\320\246\320\265\320\275\320\260", Q_NULLPTR));
         additionaly->setText(QApplication::translate("RR_Cash", "\320\224\320\236\320\237", Q_NULLPTR));
@@ -570,7 +580,7 @@ public:
         QTableWidgetItem *___qtablewidgetitem9 = table_tovar->horizontalHeaderItem(9);
         ___qtablewidgetitem9->setText(QApplication::translate("RR_Cash", "test", Q_NULLPTR));
         QTableWidgetItem *___qtablewidgetitem10 = table_tovar->horizontalHeaderItem(10);
-        ___qtablewidgetitem10->setText(QApplication::translate("RR_Cash", "\320\237\320\276\320\273\321\214\320\267. \320\232\320\276\320\264", Q_NULLPTR));
+        ___qtablewidgetitem10->setText(QApplication::translate("RR_Cash", "\320\232\320\276\320\264", Q_NULLPTR));
         menuRR_Cash_mini->setTitle(QApplication::translate("RR_Cash", "\320\244\320\260\320\271\320\273", Q_NULLPTR));
         menu->setTitle(QApplication::translate("RR_Cash", "\320\232\320\260\321\201\321\201\320\260", Q_NULLPTR));
         menu_2->setTitle(QApplication::translate("RR_Cash", "\320\247\320\265\320\272", Q_NULLPTR));

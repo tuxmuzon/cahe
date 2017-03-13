@@ -3,6 +3,7 @@
 #include <QWidget>
 #include "QKeyEvent"
 #include <QMessageBox>
+#include <QApplication>
 
 namespace Ui {
     class priceInput;
@@ -29,6 +30,7 @@ private slots:
     void on_seven_clicked();
     void on_eight_clicked();
     void on_nine_clicked();
+    void addSymbol(QString symbol);
     void keyPressEvent(QKeyEvent *event);
 private:
     Ui::priceInput *ui;

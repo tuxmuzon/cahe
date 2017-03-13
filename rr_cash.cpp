@@ -443,6 +443,14 @@ void RR_Cash::keyPressEvent(QKeyEvent *event) {
     if(event->key()==Qt::Key_F9){
         on_price_clicked();
     }
+    if(event->key()==Qt::Key_Backspace){
+        QString text = ui->label_KolVo->text();
+        text.chop(1);
+        count.clear();
+        barcode.clear();
+        ui->label_KolVo->setText(text);
+
+    }
     switch(event->key()) {
     case Qt::Key_X:
         if(event->modifiers() & Qt::ShiftModifier) {
@@ -930,4 +938,10 @@ QString RR_Cash::egaisReplace(QString str){
     str.replace("Щ","O");
     str.replace("З","P");
     return str;
+}
+
+void RR_Cash::on_pushButton_2_clicked(){
+        QKeyEvent event(QEvent::KeyPress, Qt::Key_Backspace, Qt::NoModifier);
+        QApplication::sendEvent(this, &event);
+        saveLog("Нажата клавиша Стереть");
 }

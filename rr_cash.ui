@@ -276,7 +276,24 @@
      </widget>
     </item>
     <item row="0" column="10">
-     <layout class="QGridLayout" name="gridLayout"/>
+     <layout class="QGridLayout" name="gridLayout">
+      <item row="0" column="0">
+       <widget class="QPushButton" name="pushButton_2">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Minimum" vsizetype="Expanding">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">font: 20pt &quot;MS Shell Dlg 2&quot;;</string>
+        </property>
+        <property name="text">
+         <string>Стереть</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
     </item>
     <item row="10" column="1">
      <widget class="QLabel" name="discont_2">
@@ -679,7 +696,7 @@
       </column>
       <column>
        <property name="text">
-        <string>Польз. Код</string>
+        <string>Код</string>
        </property>
        <property name="textAlignment">
         <set>AlignCenter</set>
