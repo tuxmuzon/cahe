@@ -390,16 +390,46 @@ void RR_Cash::keyPressEvent(QKeyEvent *event) {
     }
     //Удаляем текущую строку.
     else if (event->key()==Qt::Key_Minus) {
+        int n = QMessageBox::warning(0,
+                                     "Внимание",
+                                     "Позиция будет удалена"
+                                     "\n Для удаления нажмите Да, Отмена Нет",
+                                     "Да",
+                                     "Нет",
+                                     QString(),
+                                     0,
+                                     1
+                                    );
+        if(!n) {
+            // Saving the changes!
+
         ui->table_tovar->removeRow(ui->table_tovar->currentRow());
         RR_Cash::UpdateItog();
+       }
+
+
     }
     if (event->key()==Qt::Key_Q) {
+        int n = QMessageBox::warning(0,
+                                     "Внимание",
+                                     "Текущий чек будет очищен"
+                                     "\n Для очистки нажмите Да, Отмена Нет",
+                                     "Да",
+                                     "Нет",
+                                     QString(),
+                                     0,
+                                     1
+                                    );
+        if(!n) {
+            // Saving the changes!
         count.clear();
         barcode.clear();
         for(int i=ui->table_tovar->rowCount();i>=0;i--) {
             // qDebug() << i;
             ui->table_tovar->removeRow(i);
         }
+        }
+
     }
     //скидка
     if(event->key()==Qt::Key_F11){
@@ -822,7 +852,7 @@ void RR_Cash::on_tab_2_clicked(){
                 QString text = QInputDialog::getText(this, tr("Акцизный товар марка"),
                                                      tr("Отсканируйте акцизную марку"), QLineEdit::Normal,"", &ok);
                 if (ok) {
-                    alcochek = true;
+                   // alcochek = true;
                     barcode.clear();                    
                     ui->table_tovar->setItem(0,5,new QTableWidgetItem(egaisReplace(text)));
                     ui->table_tovar->setItem(0,6,new QTableWidgetItem(query.value(8).toString()));
