@@ -14,11 +14,7 @@
 #include <QInputDialog>
 #include <QList>
 #include <QDialog>
-
 #include <ui_rr_cash.h>
-
-//#include <ui_rr_cash.h>
-//tetetstetete
 namespace Ui {
 class RR_Cash;
 }
@@ -76,11 +72,11 @@ private slots:
     void on_tab_2_clicked();
     void on_price_clicked();
     void saveLog(const QString &datastr);
+    void loadFile();
     QString egaisReplace(QString str);
     void on_pushButton_2_clicked();
-
     void on_zero2_clicked();
-
+    void on_table_tovar_currentCellChanged(int currentRow, int currentColumn, int previousRow, int previousColumn);
 public slots:
     void getaPrice (QString price);
     void on_actionZ_triggered();

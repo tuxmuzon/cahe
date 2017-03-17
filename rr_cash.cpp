@@ -8,11 +8,16 @@ QString discont;
 RR_Cash::RR_Cash(QWidget *parent) :    QMainWindow(parent),    ui(new Ui::RR_Cash){
     ui->setupUi(this);
     saveLog("Запуск программы");
+    // ui->table_tovar->insertRow(0);
+    // ui->table_tovar->setItem(0,0, new QTableWidgetItem ("dfgdfg"));
+    UpdateVidCheka(1);
+    loadFile();
     ui->table_tovar->hideColumn(5);
     ui->table_tovar->hideColumn(6);
     ui->table_tovar->hideColumn(7);
     ui->table_tovar->hideColumn(8);
     ui->table_tovar->hideColumn(9);
+
 
     ui->table_tovar->resizeColumnsToContents();
     ui->table_tovar->horizontalHeader()->setSectionResizeMode(0, QHeaderView::Stretch);
@@ -20,7 +25,7 @@ RR_Cash::RR_Cash(QWidget *parent) :    QMainWindow(parent),    ui(new Ui::RR_Cas
     SummaItog = 0;
     discont = "0";
     ui->discont_2->setText(discont);
-    UpdateVidCheka(1);
+
     ui->label_KolVo->setText(trUtf8("1 x")); //Поле для количества
     ui->label_Itog->setText(trUtf8("0.00"));
     QString result_code = SHM.GetStatus("1");
@@ -61,9 +66,12 @@ RR_Cash::RR_Cash(QWidget *parent) :    QMainWindow(parent),    ui(new Ui::RR_Cas
     }
 }
 RR_Cash::~RR_Cash(){
+    QFile("auto.txt").remove();
     delete ui;
 }
 void RR_Cash::on_Exit_triggered() {
+    QFile("auto.txt").remove();
+
     RR_Cash::close();
 }
 void RR_Cash::keyPressEvent(QKeyEvent *event) {
@@ -169,12 +177,12 @@ void RR_Cash::keyPressEvent(QKeyEvent *event) {
                             //начинаем парсить ответ
                         } else {break;}
                     } else {
-                            QString fiscalStatus=SHM.GetStatus(group_print);
-                            qDebug() << "fiscal status" << fiscalStatus;
+                        QString fiscalStatus=SHM.GetStatus(group_print);
+                        qDebug() << "fiscal status" << fiscalStatus;
                         if (fiscalStatus=="0"||fiscalStatus=="5"){
                             ui->label_KolVo->setText("печать чека № "+group_print);
                             QString returnStatus=SHM.SaleDocument(goodsGroupPrint,group_print,QString::number(summ).replace(".",","),discont);
-                           // QString returnStatus=SHM.FNDiscountOperation(goodsGroupPrint,group_print,QString::number(summ).replace(".",","),discont);
+                            // QString returnStatus=SHM.FNDiscountOperation(goodsGroupPrint,group_print,QString::number(summ).replace(".",","),discont);
                             qDebug() << "return_status" << returnStatus;
                             if (returnStatus=="0"){
                                 qDebug() << "discont" << discont;
@@ -399,13 +407,13 @@ void RR_Cash::keyPressEvent(QKeyEvent *event) {
                                      QString(),
                                      0,
                                      1
-                                    );
+                                     );
         if(!n) {
             // Saving the changes!
 
-        ui->table_tovar->removeRow(ui->table_tovar->currentRow());
-        RR_Cash::UpdateItog();
-       }
+            ui->table_tovar->removeRow(ui->table_tovar->currentRow());
+            RR_Cash::UpdateItog();
+        }
 
 
     }
@@ -419,15 +427,15 @@ void RR_Cash::keyPressEvent(QKeyEvent *event) {
                                      QString(),
                                      0,
                                      1
-                                    );
+                                     );
         if(!n) {
             // Saving the changes!
-        count.clear();
-        barcode.clear();
-        for(int i=ui->table_tovar->rowCount();i>=0;i--) {
-            // qDebug() << i;
-            ui->table_tovar->removeRow(i);
-        }
+            count.clear();
+            barcode.clear();
+            for(int i=ui->table_tovar->rowCount();i>=0;i--) {
+                // qDebug() << i;
+                ui->table_tovar->removeRow(i);
+            }
         }
 
     }
@@ -691,10 +699,10 @@ void RR_Cash::on_minus_clicked(){
     QApplication::sendEvent(this, &event);
     saveLog("Нажата клавиша Минус, операция сторно");
 }
-void RR_Cash::on_product_clicked(){   
-        QKeyEvent event(QEvent::KeyPress, 42, Qt::NoModifier);
-        QApplication::sendEvent(this, &event);
-        saveLog("Нажата клавиша * измененено количество");
+void RR_Cash::on_product_clicked(){
+    QKeyEvent event(QEvent::KeyPress, 42, Qt::NoModifier);
+    QApplication::sendEvent(this, &event);
+    saveLog("Нажата клавиша * измененено количество");
 }
 void RR_Cash::on_tab_clicked(){
     QKeyEvent event(QEvent::KeyPress, Qt::Key_Tab, Qt::NoModifier);
@@ -772,7 +780,7 @@ void RR_Cash::on_pushButton_clicked(){
     barcode.clear();
     count.clear();
 }
-void RR_Cash::on_discont_clicked(){       
+void RR_Cash::on_discont_clicked(){
     if(ui->label_KolVo->text().toDouble()<=5&&ui->label_KolVo->text().toDouble()>0){
         ui->discont_2->setText(ui->label_KolVo->text());
         discont=ui->label_KolVo->text(); ui->label_KolVo->clear(); barcode.clear(); count.clear();
@@ -792,12 +800,12 @@ void RR_Cash::on_additionaly_clicked(){
     saveLog("вызван дополнительный диалог");
 }
 void RR_Cash::getaPrice(QString price){
-    // log цена price введена в ручную  
+    // log цена price введена в ручную
 
-        ui->table_tovar->setItem(0,3,new QTableWidgetItem(price));
-        QString sum_row;
-        sum_row.setNum(ui->table_tovar->item(0,3)->text().replace(",",".").toDouble()*ui->table_tovar->item(0,1)->text().replace(",",".").toDouble());
-        ui->table_tovar->setItem(0,4,new QTableWidgetItem(sum_row.replace(".",",")));     
+    ui->table_tovar->setItem(0,3,new QTableWidgetItem(price));
+    QString sum_row;
+    sum_row.setNum(ui->table_tovar->item(0,3)->text().replace(",",".").toDouble()*ui->table_tovar->item(0,1)->text().replace(",",".").toDouble());
+    ui->table_tovar->setItem(0,4,new QTableWidgetItem(sum_row.replace(".",",")));
 }
 void RR_Cash::on_tab_2_clicked(){
     // лог тоже поиск по коду, логика как со ШК, можно свернуть в процедуру
@@ -816,8 +824,10 @@ void RR_Cash::on_tab_2_clicked(){
         bool find_repeat, ok;
         find_repeat=false;
         for(int i =0; i< ui->table_tovar->rowCount(); i++){
-            qDebug() << "barcode in query" << query.value(7).toString();
-            if (ui->table_tovar->item(i,10)->text()==query.value(9).toString() && ui->table_tovar->item(i,5)->text()=="") {
+            qDebug() << "barcode in query" << query.value(9).toString();
+            qDebug() << "barcode in table" << ui->table_tovar->item(i,10)->text();
+            qDebug() << "egais_status" << ui->table_tovar->item(i,5)->text();
+            if (ui->table_tovar->item(i,10)->text()==query.value(9).toString() && (ui->table_tovar->item(i,5)->text()=="0" || ui->table_tovar->item(i,5)->text()=="") ) {
                 ui->table_tovar->setItem(i,1,new QTableWidgetItem(QString::number(ui->table_tovar->item(i,1)->text().toInt()+1)));
                 QString sum_row;
                 sum_row.setNum(ui->table_tovar->item(ui->table_tovar->currentRow(),3)->text().replace(",",".").toDouble()*ui->table_tovar->item(ui->table_tovar->currentRow(),1)->text().toDouble());
@@ -860,8 +870,8 @@ void RR_Cash::on_tab_2_clicked(){
                 QString text = QInputDialog::getText(this, tr("Акцизный товар марка"),
                                                      tr("Отсканируйте акцизную марку"), QLineEdit::Normal,"", &ok);
                 if (ok) {
-                   // alcochek = true;
-                    barcode.clear();                    
+                    // alcochek = true;
+                    barcode.clear();
                     ui->table_tovar->setItem(0,5,new QTableWidgetItem(egaisReplace(text)));
                     ui->table_tovar->setItem(0,6,new QTableWidgetItem(query.value(8).toString()));
                     qDebug() << ui->table_tovar->item(0,5)->text();
@@ -939,23 +949,70 @@ QString RR_Cash::egaisReplace(QString str){
     return str;
 }
 void RR_Cash::on_pushButton_2_clicked(){
-        QKeyEvent event(QEvent::KeyPress, Qt::Key_Backspace, Qt::NoModifier);
-        QApplication::sendEvent(this, &event);
-        saveLog("Нажата клавиша Стереть");
+    QKeyEvent event(QEvent::KeyPress, Qt::Key_Backspace, Qt::NoModifier);
+    QApplication::sendEvent(this, &event);
+    saveLog("Нажата клавиша Стереть");
 }
 void RR_Cash::closeEvent(QCloseEvent *e){
     if (ui->table_tovar->rowCount()>0){//Вызываем функцию например: сохранения файла
         QMessageBox::warning(0,"Предупреждение", "Есть открытый чек, отмените чек перед закрытием");
-      //  e->accept();
-         e->ignore();
+        //  e->accept();
+        e->ignore();
     }
 }
-
-void RR_Cash::on_zero2_clicked()
-{
+void RR_Cash::on_zero2_clicked(){
     for (int i=0; i < 2; i++){
         QKeyEvent event(QEvent::KeyPress, Qt::Key_0, Qt::NoModifier);
         QApplication::sendEvent(this, &event);
         saveLog("Нажата клавиша 0");
     }
+}
+void RR_Cash::on_table_tovar_currentCellChanged(int currentRow, int currentColumn, int previousRow, int previousColumn){
+    qDebug() << "item_chenge";
+    QFile *file = new QFile("auto.txt");
+
+    if (file->open(QIODevice::WriteOnly))
+    {
+        QTextStream data( file );
+        data.setCodec("UTF-8");
+        QStringList strList;
+        for( int r = 0; r < ui->table_tovar->rowCount(); ++r ){
+            strList.clear();
+            for( int c = 0; c < ui->table_tovar->columnCount(); ++c )
+            {   QTableWidgetItem* item = ui->table_tovar->item(r,c);
+                if (!item || item->text().isEmpty()){
+                    ui->table_tovar->setItem(r,c,new QTableWidgetItem("0"));//IF there is nothing write 0
+                }
+                strList << ui->table_tovar->item( r, c )->text();
+            }
+            data << strList.join( ";" )+"\r\n";
+        }
+        statusBar()->showMessage(tr("File saved successfully."), 3000);
+        file->close();
+    } else {qDebug() << "files erroe";}
+}
+void RR_Cash::loadFile() {
+    QString data;
+    QFile importedCSV("auto.txt");
+    QStringList rowOfData;
+    QStringList rowData;
+    data.clear();
+    rowOfData.clear();
+    rowData.clear();
+    if (importedCSV.open(QFile::ReadOnly)) {
+        data = importedCSV.readAll();
+        rowOfData = data.split("\r\n");
+        qDebug() << "data" << rowOfData;//Value on each row
+        importedCSV.close();
+        ui->table_tovar->insertRow(0);
+        for (int x = 0; x < rowOfData.size(); x++){
+            rowData = rowOfData.at(x).split(";");   //Number of collumn
+            for (int y = 0; y < rowData.size(); y++) {
+                qDebug() << "item" << rowData[y];
+                //ui->table_tovar->item(x,y)->setText(rowData[y]);
+                ui->table_tovar->setItem(x,y,new QTableWidgetItem(rowData[y]));
+            }
+        }
+    }
+    statusBar()->showMessage(tr("File successfully loaded."), 3000);
 }
