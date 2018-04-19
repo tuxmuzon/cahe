@@ -1,13 +1,21 @@
 #include "fiscal.h"
 
 fiscal::fiscal(QObject *parent) : QObject(parent){
-    drvFR->setControl("AddIn.DrvFR");
+
+
+#if defined(Q_OS_WIN32)
+drvFR->setControl("AddIn.DrvFR");
+#endif
+
 }
 
 //FNDiscountOperation
 //ФНОперацияСоСкидками
 QString fiscal::GetStatus(QString FrN) { //Получение состояния ККМ
     //  drvFR->setControl("AddIn.DrvFR");
+#if defined(Q_OS_WIN32)
+
+
     QString FiscalStatus = "";
     drvFR->dynamicCall("LDNumber",FrN);
     drvFR->dynamicCall("SetActiveLD()");
@@ -44,8 +52,10 @@ QString fiscal::GetStatus(QString FrN) { //Получение состояния
     drvFR->setProperty("Password", "30");
     drvFR->dynamicCall("Disconnect()");
     return FiscalStatus;
+    #endif
 }
 QString fiscal::CancelDocument(QString FrN){
+    #if defined(Q_OS_WIN32)
     QString FiscalStatus = "";
     drvFR->dynamicCall("LDNumber",FrN);
     drvFR->dynamicCall("SetActiveLD()");
@@ -63,8 +73,10 @@ QString fiscal::CancelDocument(QString FrN){
     drvFR->setProperty("Password", "30");
     drvFR->dynamicCall("Disconnect()");
     return FiscalStatus;
+    #endif
 }
 QString fiscal::Get_Z_Report(QString FrN){
+     #if defined(Q_OS_WIN32)
     QString FiscalStatus = "";
     drvFR->dynamicCall("LDNumber",FrN);
     drvFR->dynamicCall("SetActiveLD()");
@@ -82,8 +94,10 @@ QString fiscal::Get_Z_Report(QString FrN){
     drvFR->setProperty("Password", "30");
     drvFR->dynamicCall("Disconnect()");
     return FiscalStatus;
+     #endif
 }
 QString fiscal::Get_X_Report(QString FrN){
+     #if defined(Q_OS_WIN32)
     QString FiscalStatus = "";
     drvFR->dynamicCall("LDNumber",FrN);
     drvFR->dynamicCall("SetActiveLD()");
@@ -101,11 +115,14 @@ QString fiscal::Get_X_Report(QString FrN){
     drvFR->setProperty("Password", "30");
     drvFR->dynamicCall("Disconnect()");
     return FiscalStatus;
+    #endif
 }
 QString fiscal::SaleDocument(QList<QStringList> egaisgoods, QString FrN,  QString nal_sum, QString discont){
     qApp->processEvents();
     QTextStream cout(stdout);
+
     if (FrN=="0") {FrN="1";}
+    #if defined(Q_OS_WIN32)
     drvFR->dynamicCall("LDNumber",FrN);
     drvFR->dynamicCall("SetActiveLD()");
     drvFR->setProperty("Password", "30");
@@ -161,9 +178,11 @@ QString fiscal::SaleDocument(QList<QStringList> egaisgoods, QString FrN,  QStrin
     drvFR->setProperty("Password", "01");
     drvFR->dynamicCall("Disconnect()");
     return FiscalStatus;
+    #endif
 }
 QString fiscal::collection(QString nal_su, QString FrN) { //инкасация
     QString FiscalStatus = "";
+    #if defined(Q_OS_WIN32)
     drvFR->dynamicCall("LDNumber",FrN);
     drvFR->dynamicCall("SetActiveLD()");
     drvFR->setProperty("Password", "01");
@@ -179,9 +198,11 @@ QString fiscal::collection(QString nal_su, QString FrN) { //инкасация
         FiscalStatus=ResultCode.value<QString>()+"/" + ResultDescription.value<QString>();
     }
     return FiscalStatus;
+    #endif
 }
 QString fiscal::entering_monye(QString nal_sum, QString FrN){ //внесение
     QString FiscalStatus = "";
+     #if defined(Q_OS_WIN32)
     drvFR->dynamicCall("LDNumber",FrN);
     qDebug() << "FR №" << FrN;
     drvFR->dynamicCall("SetActiveLD()");
@@ -199,10 +220,12 @@ QString fiscal::entering_monye(QString nal_sum, QString FrN){ //внесение
         FiscalStatus=ResultCode.value<QString>()+"/" + ResultDescription.value<QString>();
     }
     return FiscalStatus;
+     #endif
 }
 QString fiscal::ReturnDocument(QList<QStringList> egaisgoods, QString FrN,  QString nal_sum,QString discont){
     if (FrN=="0") {FrN="1";}
     qApp->processEvents();
+    #if defined(Q_OS_WIN32)
     drvFR->dynamicCall("LDNumber",FrN);
     drvFR->dynamicCall("SetActiveLD()");
     drvFR->setProperty("Password", "30");
@@ -239,12 +262,14 @@ QString fiscal::ReturnDocument(QList<QStringList> egaisgoods, QString FrN,  QStr
     drvFR->setProperty("Password", "01");
     drvFR->dynamicCall("Disconnect()");
     return FiscalStatus;
+    #endif
 }
 QString fiscal::GetDateTime(QString FrN){
     //not get fisacal status
     //ДДММГГЧЧММ
     QString DateTime;
     QString FiscalStatus = "";
+    #if defined(Q_OS_WIN32)
     drvFR->dynamicCall("LDNumber",FrN);
     drvFR->dynamicCall("SetActiveLD()");
     drvFR->setProperty("Password", "01");
@@ -270,12 +295,14 @@ QString fiscal::GetDateTime(QString FrN){
         DateTime=ResultCode.value<QString>()+"/" + ResultDescription.value<QString>();
     }
     return DateTime;
+    #endif
 }
 QString fiscal::PrintURL(QStringList url, QString FrN){
     qApp->processEvents();
     QString FiscalStatus = "";
     QSqlQuery company("select company.name, company.INN, company.KPP, Addres, Host  from device, company where company.ID=device.org_id and logical_name="+FrN);
     company.next();
+    #if defined(Q_OS_WIN32)
     //INN //kpp // №кассы №смены № документа Дата веремя
     drvFR->dynamicCall("LDNumber",FrN);
     drvFR->dynamicCall("SetActiveLD()");
@@ -337,10 +364,12 @@ QString fiscal::PrintURL(QStringList url, QString FrN){
         FiscalStatus=ResultCode.value<QString>()+"/" + ResultDescription.value<QString>();
     }
     return FiscalStatus;
+#   endif
 }
 QString fiscal::GetCurrentDoc(QString FrN){
     //последний напечатанный, для егаиса нужно добавить номер, если доавляем после продажи то не наращивать
     QString NumberDoc;
+    #if defined(Q_OS_WIN32)
     drvFR->dynamicCall("LDNumber",FrN);
     drvFR->dynamicCall("SetActiveLD()");
     drvFR->setProperty("Password", "01");
@@ -357,9 +386,11 @@ QString fiscal::GetCurrentDoc(QString FrN){
         NumberDoc=ResultCode.value<QString>()+"/" + ResultDescription.value<QString>();
     }
     return NumberDoc;
+    #endif
 }
 QString fiscal::GetCurrentShift(QString FrN){
     QString CurrentShift;
+    #if defined(Q_OS_WIN32)
     drvFR->dynamicCall("LDNumber",FrN);
     drvFR->dynamicCall("SetActiveLD()");
     drvFR->setProperty("Password", "01");
@@ -376,9 +407,11 @@ QString fiscal::GetCurrentShift(QString FrN){
         CurrentShift=ResultCode.value<QString>()+"/" + ResultDescription.value<QString>();
     }
     return CurrentShift;
+    #endif
 }
 QString fiscal::GetSerialNumber(QString FrN){
     QString SerialNumber;
+    #if defined(Q_OS_WIN32)
     drvFR->dynamicCall("LDNumber",FrN);
     drvFR->dynamicCall("SetActiveLD()");
     drvFR->setProperty("Password", "01");
@@ -394,11 +427,13 @@ QString fiscal::GetSerialNumber(QString FrN){
         SerialNumber=ResultCode.value<QString>()+"/" + ResultDescription.value<QString>();
     }
     return SerialNumber;
+    #endif
 }
 QString fiscal::FNDiscountOperation(QList<QStringList> egaisgoods, QString FrN,  QString nal_sum, QString discont){
     qApp->processEvents();
     QTextStream cout(stdout);
     if (FrN=="0") {FrN="1";}
+    #if defined(Q_OS_WIN32)
     drvFR->dynamicCall("LDNumber",FrN);
     drvFR->dynamicCall("SetActiveLD()");
     drvFR->setProperty("Password", "30");
@@ -447,4 +482,5 @@ QString fiscal::FNDiscountOperation(QList<QStringList> egaisgoods, QString FrN, 
     drvFR->setProperty("Password", "01");
     drvFR->dynamicCall("Disconnect()");
     return FiscalStatus;
+    #endif
 }

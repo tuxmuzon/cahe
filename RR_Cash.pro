@@ -5,7 +5,9 @@
 #-------------------------------------------------
 
 QT       += core gui sql
-QT       += axcontainer
+#if defined(Q_OS_WIN32)
+#QT       += axcontainer
+#endif
 QT       += network
 #QT       += activeqt
 #QT       += core gui widgets axcontainer

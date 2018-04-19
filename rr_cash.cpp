@@ -28,13 +28,17 @@ RR_Cash::RR_Cash(QWidget *parent) :    QMainWindow(parent),    ui(new Ui::RR_Cas
 
     ui->label_KolVo->setText(trUtf8("1 x")); //Поле для количества
     ui->label_Itog->setText(trUtf8("0.00"));
-    QString result_code = SHM.GetStatus("1");
+  //  QString result_code = SHM.GetStatus("1");
+   QString  result_code = "1";
+    if (!result_code.isEmpty()) {
     if(result_code=="0") {
         saveLog( "KKM 1 OK ");
     }  else{
         QMessageBox::warning(0,"Ошибка КАССЫ 1", result_code+"УСТРАНИТЕ ОШИБКУ И НАЖМИТЕ ЗАПРОСИТЬ СТАТУС");
         saveLog("Ошибка КАССЫ 1" + result_code+"УСТРАНИТЕ ОШИБКУ И НАЖМИТЕ ЗАПРОСИТЬ СТАТУС");
     }
+    }
+
     result_code = SHM.GetStatus("2");
     if(result_code=="0") {
         saveLog("KKM 2 OK");
@@ -546,6 +550,7 @@ void RR_Cash::on_actionX_triggered(){ // Х - отчет 6 код
 }
 void RR_Cash::on_action_4_triggered(){ //Окно настроек драйвера
     // вынести в fiscal
+    #if defined(Q_OS_WIN32)
     QAxWidget *drvFR = new QAxWidget("AddIn.DrvFR");
     drvFR->setControl("AddIn.DrvFR");
     drvFR->setProperty("Password", "30");
@@ -555,6 +560,7 @@ void RR_Cash::on_action_4_triggered(){ //Окно настроек драйве�
     drvFR->setProperty("Password", "30");
     drvFR->dynamicCall("Disconnect()");
     saveLog("Открыли окно настроек драйвера");
+    #endif
 }
 void RR_Cash::on_action_2_triggered(){ //проверка статуса кассы
     QInputDialog *dialog = new QInputDialog();
@@ -608,6 +614,7 @@ void RR_Cash::on_action_3_triggered(){ //Продолжить печать
 
     qDebug() << "fr №" << query.value(0).toString();
     if (accepted){
+        #if defined(Q_OS_WIN32)
         QAxWidget *test = new QAxWidget("AddIn.DrvFR");
         test->setControl("AddIn.DrvFR");
         test->dynamicCall("LDNumber",query.value(0).toString());
@@ -619,6 +626,7 @@ void RR_Cash::on_action_3_triggered(){ //Продолжить печать
         test->setProperty("Password", "30");
         test->dynamicCall("Disconnect()");
         saveLog("продолжить печать на кассе№"+query.value(0).toString());
+        #endif
     }
 }
 void RR_Cash::on_action_6_triggered() {// Меняем вид чека на "Возврат"

@@ -1,7 +1,9 @@
 #ifndef FISCAL_H
 #define FISCAL_H
 #include <QWidget>
+#if defined(Q_OS_WIN32)
 #include <QAxWidget>
+#endif
 #include <QSqlQuery>
 #include <QApplication>
 #include <QDebug>
@@ -29,6 +31,8 @@ public slots:
     QString GetSerialNumber(QString FrN);
     QString FNDiscountOperation(QList<QStringList> egaisgoods, QString FrN,  QString nal_sum, QString discont);
 private:
+    #if defined(Q_OS_WIN32)
     QAxWidget *drvFR = new QAxWidget();
+    #endif
 };
 #endif // FISCAL_H
